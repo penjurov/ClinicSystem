@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="well">
+        <form name="contactForm" class="form-horizontal">
+            <fieldset>
+                <legend>Contact us</legend>
+
+                <div class="form-group">
+                    <label for="contact-name" class="col-md-2 control-label">Name</label>
+                    <div class="col-md-10">
+                        <input id="contact-name" type="text"  placeholder="Name" ng-model="contact.Name" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-question" class="col-md-2 control-label">Question</label>
+                    <div class="col-md-10">
+                        <textarea id="contact-question" type="text" placeholder="Question" ng-model="contact.Question" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+                    <button ng-click="" ng-disabled="contactForm.$invalid" class="btn btn-primary">
+                        Send
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="well">
+        <div google-map center="map.center" zoom="map.zoom"></div>
+        <fieldset>
+        <div class="pull-right">
+            <button ng-click="" ng-disabled="" class="btn btn-primary">
+                Take me there
+            </button>
+        </div>
+        </fieldset>
+    </div>
+</div>

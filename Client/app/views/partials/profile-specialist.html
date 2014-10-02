@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="well">
+        <form name="specialistUpdateForm" class="form-horizontal">
+            <fieldset>
+                <legend>Update specialist</legend>
+                <div class="form-group">
+                    <label for="specialist-username" class="col-md-2 control-label">Username</label>
+                    <div class="col-md-10">
+                        <input id="specialist-username" type="text" placeholder="Username" ng-model="user.Username" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialist-password" class="col-md-2 control-label">Password</label>
+                    <div class="col-md-10">
+                        <input id="specialist-password" type="password" placeholder="Password" ng-model="user.password" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialist-confirmation" class="col-md-2 control-label">Confirm Password</label>
+                    <div class="col-md-10">
+                        <input id="specialist-confirmation" type="password" placeholder="Confirm password" ng-model="user.confirmPassword" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialist-specialty" class="col-md-2 control-label">Speciality</label>
+                    <div class="col-md-10">
+                        <input id="specialist-specialty" type="text" placeholder="Specialty" ng-model="user.Specialty" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialist-uin" class="col-md-2 control-label">UIN</label>
+                    <div class="col-md-10">
+                        <input id="specialist-uin" type="text" placeholder="UIN" ng-model="user.Uin" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialist-email" class="col-md-2 control-label">Email</label>
+                    <div class="col-md-10">
+                        <input id="specialist-email" type="text" placeholder="Email" ng-model="user.Email" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialist-phone" class="col-md-2 control-label">Phone</label>
+                    <div class="col-md-10">
+                        <input id="specialist-phone" type="text" placeholder="Phone" ng-model="user.Phones" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+                    <button ng-click="updateFarm(user)" ng-disabled="specialistUpdateForm.$invalid" class="btn btn-primary">
+                        Update
+                    </button>
+                    <a href="" ng-click="deleteFarm(user)" class="btn btn-primary">Close Profile</a>
+                    <a href="#/" class="btn btn-primary">Cancel</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

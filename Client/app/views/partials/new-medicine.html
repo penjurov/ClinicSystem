@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="well">
+        <form name="medicineAddForm" class="form-horizontal">
+            <fieldset>
+                <legend>New medicine</legend>
+                <div class="form-group">
+                    <label for="medicine-name" class="col-md-2 control-label">Name</label>
+                    <div class="col-md-10">
+                        <input id="medicine-name" type="text" placeholder="Name" ng-model="medicine.Name" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="medicine-description" class="col-md-2 control-label">Description</label>
+                    <div class="col-md-10">
+                        <textarea id="medicine-description" type="text" placeholder="Description" ng-model="medicine.Description" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+                    <button ng-click="newMedicine(medicine)" ng-disabled="medicineAddForm.$invalid" class="btn btn-primary">
+                        Add
+                    </button>
+                    <a href="#/" class="btn btn-primary">Cancel</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="well">
+        <form name="procedureEditForm" class="form-horizontal">
+            <fieldset>
+                <legend>Edit procedure</legend>
+                <div class="form-group">
+                    <label for="choose-procedure" class="col-md-2 control-label">Select procedure:</label>
+                    <div class="col-md-10">
+                        <select id="choose-procedure" class="form-control" ng-model="selectedProcedure" ng-change="change()">
+                            <option ng-repeat="selectedProcedure in procedures" value="{{selectedProcedure.Id}}">{{ selectedProcedure.Name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="procedure-name" class="col-md-2 control-label">Name</label>
+                    <div class="col-md-10">
+                        <input id="procedure-name" type="text" placeholder="Name" ng-model="procedure.Name" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="procedure-information" class="col-md-2 control-label">Information</label>
+                    <div class="col-md-10">
+                        <textarea id="procedure-information" type="text" placeholder="Information" ng-model="procedure.Information" required="required" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+                    <button ng-click="editProcedure()" ng-disabled="procedureEditForm.$invalid" class="btn btn-primary">
+                        Update
+                    </button>
+                    <a href="#/" class="btn btn-primary">Delete</a>
+                    <a href="#/" class="btn btn-primary">Cancel</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
