@@ -1,0 +1,29 @@
+{
+  "name": "ClinicSystem",
+  "version": "0.0.0",
+  "main": "server.js",
+  "authors": [
+    "Team Nike"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "toastr": "~2.0.3",
+    "angular": "~1.2.26",
+    "angular-route": "~1.2.26",
+    "angular-resource": "~1.2.26",
+    "ui-bootstrap": "~0.11.2",
+    "lodash": "~2.4.1",
+    "angular-google-maps": "~1.2.2",
+    "bootstrap": "~3.2.0",
+    "angular-cookies": "~1.2.26"
+  }
+}
