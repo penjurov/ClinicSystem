@@ -1,0 +1,51 @@
+.container
+    .well
+        form(name="patientUpdateForm").form-horizontal
+            fieldset
+                legend Update patient
+                .form-group
+                    label(for="patient-password").col-md-2.control-label Password
+                    .col-md-10
+                        input(type="password" placeholder="Password" ng-model="user.password")#patient-password.form-control
+                .form-group
+                    label(for="patient-confirmation").col-md-2.control-label Confirm Password
+                    .col-md-10
+                        input(type="password" placeholder="Confirm password" ng-model="user.confirmPassword")#patient-confirmation.form-control
+                .form-group
+                    label(for="patient-first-name").col-md-2.control-label First name
+                    .col-md-10
+                        input(type="text" placeholder="First name" ng-model="user.firstName" required="required")#patient-first-name.form-control
+                .form-group
+                    label(for="patient-last-name").col-md-2.control-label Last name
+                    .col-md-10
+                        input(type="text" placeholder="Last name" ng-model="user.lastName" required="required")#patient-last-name.form-control
+                .form-group
+                    label(for="patient-age").col-md-2.control-label Age
+                    .col-md-10
+                        input(type="number" min="0" placeholder="Age" ng-model="user.age" required="required")#patient-age.form-control
+                .form-group
+                    label(for="patient-uin").col-md-2.control-label Gender
+                    .col-md-10
+                        select(ng-model="user.gender" required="required")#patient-gender.form-control
+                            option(value="Male") Male
+                            option(value="Female") Female
+                .form-group
+                    label(for="patient-history").col-md-2.control-label Medical History
+                    .col-md-10
+                        textarea(placeholder="Medical history" ng-model="user.medicalHistory" required="required")#patient-history.form-control
+                .form-group
+                    label(for="patient-number").col-md-2.control-label Patient number
+                    .col-md-10
+                        input(type="text" placeholder="Patient number" ng-model="user.patientNumber" required="required")#patient-number.form-control
+                .form-group
+                    label(for="specialist-email").col-md-2.control-label Email
+                    .col-md-10
+                        input(type="text" placeholder="Email" ng-model="user.email")#specialist-email.form-control
+                .form-group
+                    label(for="specialist-phone").col-md-2.control-label Phone
+                    .col-md-10
+                        input(type="text" placeholder="Phone" ng-model="user.phone")#specialist-phone.form-control
+                .pull-right
+                    button(ng-click="update(user)" ng-disabled="patientUpdateForm.$invalid").btn.btn-primary Update
+                    a(href="#/" ng-click="close(user)").btn.btn-primary Close profile
+                    a(href="#/" ).btn.btn-primary Cancel

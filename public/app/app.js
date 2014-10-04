@@ -2,24 +2,41 @@
 
 var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.bootstrap', 'google-maps']).
     config(['$routeProvider', function($routeProvider) {
+        var routeUserChecks = {
+            adminRole: {
+                authenticate: function(auth) {
+                    return auth.isAuthorizedForRole('specialist');
+                }
+            },
+            authenticated: {
+                authenticate: function(auth) {
+                    return auth.isAuthenticated();
+                }
+            }
+        };
+
         $routeProvider
             .when('/register-patient', {
-                templateUrl: '/partials/register-patient',
-                controller: 'SignUpCtrl'
+                templateUrl: '/partials/patient/patient-register',
+                controller: 'SignUpCtrl',
+                resolve: routeUserChecks.adminRole
             })
            .when('/register-specialist', {
-                templateUrl: '/partials/register-specialist',
-                controller: 'SignUpCtrl'
+                templateUrl: '/partials/specialist/specialist-register',
+                controller: 'SignUpCtrl',
+                resolve: routeUserChecks.adminRole
             })
-            /*            .when('/profile-specialist', {
-                templateUrl: 'views/partials/profile-specialist.html',
-                controller: 'SpecialistProfileCtrl'
+            .when('/profile-specialist', {
+                templateUrl: '/partials/specialist/specialist-profile',
+                controller: 'ProfileCtrl',
+                resolve: routeUserChecks.adminRole
             })
             .when('/profile-patient', {
-                templateUrl: 'views/partials/profile-patient.html',
-                controller: 'PatientProfileCtrl'
+                templateUrl: '/partials/patient/patient-profile',
+                controller: 'ProfileCtrl',
+                resolve: routeUserChecks.authenticated
             })
-            .when('/new-examination', {
+            /*            .when('/new-examination', {
                 templateUrl: 'views/partials/new-examination.html',
                 controller: 'NewExaminationCtrl'
             })
@@ -57,6 +74,12 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
             })*/
             .otherwise({ redirectTo: '/' });
     }])
-    .value('toastr', toastr)
-    //.constant('baseServiceUrl', 'http://localhost:6022');
-    .constant('baseServiceUrl', 'http://biomarketserver.apphb.com');
+    .value('toastr', toastr);
+
+app.run(function($rootScope, $location) {
+    $rootScope.$on('$routeChangeError', function(ev, current, previous, rejection) {
+        if (rejection === 'not authorized') {
+            $location.path('/');
+        }
+    })
+});

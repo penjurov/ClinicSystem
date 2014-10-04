@@ -1,12 +1,49 @@
-app.factory('auth', ['$http', '$q', 'identity', 'authorization', 'baseServiceUrl', function($http, $q, identity, authorization, baseServiceUrl) {
-    var usersApi = baseServiceUrl + '/api/Account';
-
+app.factory('auth', function($http, $q, identity, UsersResource) {
     return {
         signup: function(user) {
             var deferred = $q.defer();
 
-            $http.post(usersApi + '/Register', user)
-                .success(function() {
+            var user = new UsersResource(user);
+            user.$save().then(function() {
+                deferred.resolve();
+            }, function(response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        },
+        update: function(user) {
+            var deferred = $q.defer();
+
+            var updatedUser = new UsersResource(user);
+            updatedUser._id = identity.currentUser._id;
+            updatedUser.$update().then(function() {
+                identity.currentUser.firstName = updatedUser.firstName;
+                identity.currentUser.lastName = updatedUser.lastName;
+                identity.currentUser.specialty = updatedUser.specialty;
+                identity.currentUser.uin = updatedUser.uin;
+                identity.currentUser.email = updatedUser.email;
+                identity.currentUser.phone = updatedUser.phone;
+                identity.currentUser.age = updatedUser.age;
+                identity.currentUser.gender = updatedUser.gender;
+                identity.currentUser.medicalHistory = updatedUser.medicalHistory;
+                identity.currentUser.patientNumber = updatedUser.patientNumber;
+                deferred.resolve();
+            }, function(response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        },
+        close: function(user) {
+            var deferred = $q.defer();
+
+            var deleteUser = new UsersResource(user);
+            deleteUser._id = identity.currentUser._id;
+
+            $http.delete('/api/users', deleteUser)
+                .success(function(response) {
+                    localStorage.removeItem('bootstrappedUserObject');
                     deferred.resolve();
                 })
                 .error(function(err) {
@@ -17,11 +54,15 @@ app.factory('auth', ['$http', '$q', 'identity', 'authorization', 'baseServiceUrl
         },
         login: function(user){
             var deferred = $q.defer();
-            user['grant_type'] = 'password';
-            $http.post(baseServiceUrl + '/token', 'username=' + user.username + '&password=' + user.password + '&grant_type=password', { headers: {'Content-Type': 'application/x-www-form-urlencoded'} })
+
+            $http.post('/login', user)
                 .success(function(response) {
-                    if (response["access_token"]) {
-                        identity.setCurrentUser(response);
+                    if (response.success) {
+                        var user = new UsersResource();
+                        angular.extend(user, response.user);
+                        identity.currentUser = user;
+                        window.bootstrappedUserObject = user;
+                        localStorage.setItem("bootstrappedUserObject", JSON.stringify(user));
                         deferred.resolve(true);
                     }
                     else {
@@ -37,15 +78,11 @@ app.factory('auth', ['$http', '$q', 'identity', 'authorization', 'baseServiceUrl
         logout: function() {
             var deferred = $q.defer();
 
-            var headers = authorization.getAuthorizationHeader();
-            $http.post(usersApi + '/Logout', {}, { headers: headers })
-                .success(function() {
-                    identity.setCurrentUser(undefined);
-                    deferred.resolve();
-                })
-                .error(function (err) {
-                    deferred.reject(err);
-                });
+            $http.post('/logout').success(function() {
+                identity.currentUser = undefined;
+                localStorage.removeItem('bootstrappedUserObject');
+                deferred.resolve();
+            });
 
             return deferred.promise;
         },
@@ -56,6 +93,14 @@ app.factory('auth', ['$http', '$q', 'identity', 'authorization', 'baseServiceUrl
             else {
                 return $q.reject('not authorized');
             }
+        },
+        isAuthorizedForRole: function(role) {
+            if (identity.isAuthorizedForRole(role)) {
+                return true;
+            }
+            else {
+                return $q.reject('not authorized');
+            }
         }
     }
-}])
+});

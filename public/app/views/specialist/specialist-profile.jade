@@ -1,0 +1,41 @@
+.container
+    .well
+        form.form-horizontal(name="specialistUpdateForm")
+            fieldset
+                legend Edit specialist
+                .form-group
+                    label(for="specialist-password").col-md-2.control-label Password
+                    .col-md-10
+                        input(type="password" placeholder="Password" ng-model="user.password")#specialist-password.form-control
+                .form-group
+                    label(for="specialist-confirmation").col-md-2.control-label Confirm Password
+                    .col-md-10
+                        input(type="password" placeholder="Confirm password" ng-model="user.confirmPassword")#specialist-confirmation.form-control
+                .form-group
+                    label(for="specialist-first-name").col-md-2.control-label First name
+                    .col-md-10
+                        input(type="text" placeholder="First name" ng-model="user.firstName" required="required")#specialist-first-name.form-control
+                .form-group
+                    label(for="specialist-last-name").col-md-2.control-label Last name
+                    .col-md-10
+                        input(type="text" placeholder="Last name" ng-model="user.lastName" required="required")#specialist-last-name.form-control
+                .form-group
+                    label(for="specialist-specialty").col-md-2.control-label Specialty
+                    .col-md-10
+                        input(type="text" placeholder="Specialty" ng-model="user.specialty" required="required")#specialist-specialty.form-control
+                .form-group
+                    label(for="specialist-uin").col-md-2.control-label UIN
+                    .col-md-10
+                        input(type="text" placeholder="UIN" ng-model="user.uin" required="required")#specialist-uin.form-control
+                .form-group
+                    label(for="specialist-email").col-md-2.control-label Email
+                    .col-md-10
+                        input(type="text" placeholder="Email" ng-model="user.email" required="required")#specialist-email.form-control
+                .form-group
+                    label(for="specialist-phone").col-md-2.control-label Phone
+                    .col-md-10
+                        input(type="text" placeholder="Phone" ng-model="user.phone" required="required")#specialist-phone.form-control
+                .pull-right
+                    button(ng-click="update(user)" ng-disabled="specialistUpdateForm.$invalid").btn.btn-primary Update
+                    a(href="#/" ng-click="close(user)").btn.btn-primary Close profile
+                    a(href="#/" ).btn.btn-primary Cancel

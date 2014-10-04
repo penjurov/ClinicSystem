@@ -1,28 +1,17 @@
-app.factory('identity', ['$cookieStore', function($cookieStore) {
-    var cookieStorageUserKey = 'currentApplicationUser';
-
-    var currentUser;
+app.factory('identity', function($window, UsersResource) {
+    var user;
+    var logged = localStorage.getItem('bootstrappedUserObject');
+    if (logged) {
+        user = new UsersResource();
+        angular.extend(user, JSON.parse(logged));
+    }
     return {
-        getCurrentUser: function() {
-            var savedUser = $cookieStore.get(cookieStorageUserKey);
-            if (savedUser) {
-                return savedUser;
-            }
-
-            return currentUser;
-        },
-        setCurrentUser: function(user) {
-            if (user) {
-                $cookieStore.put(cookieStorageUserKey, user);
-            }
-            else {
-                $cookieStore.remove(cookieStorageUserKey);
-            }
-
-            currentUser = user;
-        },
+        currentUser: user,
         isAuthenticated: function() {
-            return !!this.getCurrentUser();
+            return !!this.currentUser;
+        },
+        isAuthorizedForRole: function(role) {
+            return (!!this.currentUser && this.currentUser.role === role);
         }
     }
-}]);
+});

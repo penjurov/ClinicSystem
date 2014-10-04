@@ -56,12 +56,17 @@ input.ng-dirty.ng-valid.validity {
   width: 100%;
   height: 100%;
 }
-.offers {
-  margin: auto;
+.navbar-right .navbar-form input {
+  margin-right: 5px;
 }
-.offers th,
-.offers {
-  text-align: center;
+form div button {
+  margin-right: 5px;
+}
+form div a {
+  margin-right: 5px;
+}
+.toast-top-right {
+  top: 70px;
 }
 .angular-google-map-container {
   height: 490px;

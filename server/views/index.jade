@@ -27,8 +27,6 @@ block main-content
                             span.caret
                         ul(aria-labelledby="themes").dropdown-menu
                             li
-                                a(href="#/register-patient") Register
-                            li
                                 a(href="#/profile-patient") Profile
                             li
                                 a(href="#/patient-examinations") My examinations
@@ -52,7 +50,7 @@ block main-content
                                 a(href="#/new-procedure") New procedure
                             li
                                 a(href="#/edit-procedure") Update procedure
-                div(ng-include="'partials/login'")
+                div(ng-include="'partials/account/login'")
     div(ng-view)
 
     hr
