@@ -67,11 +67,11 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
             .when('/edit-procedure', {
                 templateUrl: 'views/partials/edit-procedure.html',
                 controller: 'EditProcedureCtrl'
-            })
-            .when('/contact-us', {
-                templateUrl: 'views/partials/contact-us.html',
-                controller: 'ContactCtrl'
             })*/
+            .when('/contact-us', {
+                templateUrl: '/partials/public/contact-us',
+                controller: 'ContactCtrl'
+            })
             .otherwise({ redirectTo: '/' });
     }])
     .value('toastr', toastr);

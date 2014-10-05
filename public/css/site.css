@@ -74,3 +74,8 @@ form div a {
 textarea {
   resize: vertical;
 }
+#map-canvas {
+  height: 600px;
+  width: 93%;
+  margin-left: 3.6%;
+}

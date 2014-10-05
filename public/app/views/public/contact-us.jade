@@ -1,0 +1,17 @@
+.container
+    .well
+        form.form-horizontal(name="contactForm")
+            fieldset
+                legend Contact us
+                .form-group
+                    label(for="contact-name").col-md-2.control-label Name
+                    .col-md-10
+                        input(id="contact-name" type="text"  placeholder="Name" ng-model="contact.Name" required="required").form-control
+                .form-group
+                    label(for="contact-question").col-md-2.control-label Question
+                    .col-md-10
+                        textarea(id="contact-question" type="text" placeholder="Question" ng-model="contact.Question" required="required").form-control
+                .pull-right
+                    a(ng-click="calcRoute()").btn.btn-primary Take me there
+                    button(ng-click="" ng-disabled="contactForm.$invalid").btn.btn-primary Send
+#map-canvas.well(ng-show="contact")

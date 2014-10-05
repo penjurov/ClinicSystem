@@ -1,3 +1,8 @@
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -83,4 +88,10 @@ input.ng-dirty.ng-valid.validity {
 
 textarea {
     resize: vertical;
+}
+
+#map-canvas {
+    height: 600px;
+    width: 93%;
+    margin-left: 3.6%;
 }

@@ -19,6 +19,8 @@
                 </div>
 
                 <div class="pull-right">
+                    <a ng-click="calcRoute()" ng-disabled="" class="btn btn-primary"> Take me there</a>
+
                     <button ng-click="" ng-disabled="contactForm.$invalid" class="btn btn-primary">
                         Send
                     </button>
@@ -26,14 +28,7 @@
             </fieldset>
         </form>
     </div>
-    <div class="well">
-        <div google-map center="map.center" zoom="map.zoom"></div>
-        <fieldset>
-        <div class="pull-right">
-            <button ng-click="" ng-disabled="" class="btn btn-primary">
-                Take me there
-            </button>
-        </div>
-        </fieldset>
-    </div>
+</div>
+
+<div ng-show="contact" class = "well" id="map-canvas">
 </div>
