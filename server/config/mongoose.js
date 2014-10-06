@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    user = require('../models/User');
+    user = require('../models/User'),
+    medicine = require('../models/Medicine');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -7,7 +8,7 @@ module.exports = function(config) {
 
     db.once('open', function(err) {
         if(err) {
-            return res.status(404).send('Database could not be oppened: ' + err);
+            return res.status(404).send('Database could not be opened: ' + err);
         }
 
         console.log('Database up and running');
@@ -18,5 +19,6 @@ module.exports = function(config) {
     });
 
     user.seedInitialUsers();
+    medicine.seedInitialMedicines();
 };
 

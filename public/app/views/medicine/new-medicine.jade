@@ -1,0 +1,24 @@
+.container
+    .well
+        form.form-horizontal(name="createMedicine")
+            fieldset
+                legend Add new medicine
+                .form-group
+                    label(for="name").col-md-2.control-label Name:
+                    .col-md-10
+                        input(id="name" type="text"  placeholder="Name" ng-model="medicine.name" required="required").form-control
+                .form-group
+                    label(for="desc").col-md-2.control-label Description:
+                    .col-md-10
+                        input(id="desc" type="text"  placeholder="Description" ng-model="medicine.desc" required="required").form-control
+                .form-group
+                    label(for="sideEffects").col-md-2.control-label Side effects:
+                    .col-md-10
+                        input(id="sideEffects" type="text"  placeholder="Side Effects (ex. headache, dizziness, chest pain, breast enlargement)" ng-model="medicine.sideEffects").form-control
+                .form-group
+                    label(for="minAge").col-md-2.control-label Min age:
+                    .col-md-10
+                        input(id="minAge" type="number"  placeholder="Age" min=0 ng-model="medicine.minAge" required="required").form-control
+                .pull-right
+                    button(ng-click="add(medicine)", ng-disabled="contactForm.$invalid").btn.btn-primary Add
+                    a(href="#/" ).btn.btn-primary Cancel

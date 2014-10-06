@@ -20,7 +20,7 @@ app.controller('NewMedicineCtrl', ['$scope', '$location', 'medicines', 'notifier
                     }, function (err) {
                         notifier.error(err.message);
                         $location.path('/');
-                    })
+                    });
             }
-        }
+        };
     }]);

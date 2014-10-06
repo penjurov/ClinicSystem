@@ -10,11 +10,14 @@ module.exports = function(app) {
     app.delete('/api/users', auth.isAuthenticated, controllers.users.deleteUser);
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
-        res.render('../../public/app/views/' + req.params.partialArea + '/' + req.params.partialName)
+        res.render('../../public/app/views/' + req.params.partialArea + '/' + req.params.partialName);
     });
 
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);
+
+    //create medicine
+    app.post('/new-medicine', controllers.MedicineCtrl.createMedicine);
 
     app.get('*', function(req, res) {
         res.render('index');

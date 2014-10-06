@@ -4,9 +4,9 @@ app.controller('LoginCtrl', ['$scope', '$location', 'notifier', 'identity', 'aut
     $scope.identity = identity;
 
     $scope.login = function(user) {
-        auth.login(user).then(function(result) {
+        auth.login(user).then(function() {
             notifier.success('Successful login!');
-        }, function(error) {
+        }, function() {
             notifier.error('Username/Password combination is not valid!');
         });
     };
@@ -20,6 +20,6 @@ app.controller('LoginCtrl', ['$scope', '$location', 'notifier', 'identity', 'aut
             }
 
             $location.path('/');
-        })
-    }
+        });
+    };
 }]);

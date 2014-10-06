@@ -36,6 +36,15 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 controller: 'ProfileCtrl',
                 resolve: routeUserChecks.authenticated
             })
+            .when('/new-medicine', {
+                templateUrl: '/partials/medicine/new-medicine',
+                controller: 'MedicineCtrl',
+                resolve: routeUserChecks.adminRole
+            })
+            .when('/edit-medicine', {
+                templateUrl: '/partials/medicine/edit-medicine.html',
+                controller: 'MedicineCtrl'
+            })
             /*            .when('/new-examination', {
                 templateUrl: 'views/partials/new-examination.html',
                 controller: 'NewExaminationCtrl'
@@ -52,14 +61,6 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 templateUrl: 'views/partials/patient-examinations.html',
                 controller: 'PatientExaminationsCtrl'
             })
-            .when('/new-medicine', {
-                templateUrl: 'views/partials/new-medicine.html',
-                controller: 'NewMedicineCtrl'
-            })
-            .when('/edit-medicine', {
-                templateUrl: 'views/partials/edit-medicine.html',
-                controller: 'EditMedicineCtrl'
-            })
             .when('/new-procedure', {
                 templateUrl: 'views/partials/new-procedure.html',
                 controller: 'NewProcedureCtrl'
@@ -72,14 +73,19 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 templateUrl: '/partials/public/contact-us',
                 controller: 'ContactCtrl'
             })
+            .when('/unauthorized', {
+                template: "<h1>unauthorized</h1>"
+            })
             .otherwise({ redirectTo: '/' });
     }])
-    .value('toastr', toastr);
+    .value('toastr', toastr)
+    .constant('baseServiceUrl', 'http://localhost:9999');
+
 
 app.run(function($rootScope, $location) {
     $rootScope.$on('$routeChangeError', function(ev, current, previous, rejection) {
         if (rejection === 'not authorized') {
-            $location.path('/');
+            $location.path('/unauthorized');
         }
-    })
+    });
 });

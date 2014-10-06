@@ -5,6 +5,6 @@ app.controller('SignUpCtrl', ['$scope', '$location', 'auth', 'notifier', functio
             $location.path('/');
         }, function(err) {
             notifier.error(err.data);
-        })
-    }
+        });
+    };
 }]);

@@ -32,7 +32,7 @@ module.exports = {
 
             User.update({_id: req.body._id}, updatedUserData, function() {
                 res.end();
-            })
+            });
         }
         else {
             res.send({reason: 'You do not have permissions!'})
@@ -42,10 +42,10 @@ module.exports = {
         if (req.user._id || req.user.role == 'specialist') {
             User.remove({_id: req.user._id}, function() {
                 res.end();
-            })
+            });
         }
         else {
-            res.send({reason: 'You do not have permissions!'})
+            res.send({reason: 'You do not have permissions!'});
         }
     },
     getAllUsers: function(req, res) {
@@ -55,6 +55,6 @@ module.exports = {
             }
 
             res.send(collection);
-        })
+        });
     }
 };
