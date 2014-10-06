@@ -43,27 +43,3 @@ module.exports.seedInitialMedicines = function () {
         }
     });
 };
-
-module.exports.findByName = function (name) {
-    Medicine.findOne({name: name}).exec(function (err, medicine) {
-        if (err) {
-            console.log('Cannot find medicines: ' + err);
-            return;
-        }
-
-        return medicine;
-
-    });
-};
-
-module.exports.getAll = function () {
-    Medicine.find().exec(function (err, collection) {
-        if (err) {
-            console.log('Cannot find medicines: ' + err);
-            return;
-        }
-
-        return collection;
-
-    });
-};

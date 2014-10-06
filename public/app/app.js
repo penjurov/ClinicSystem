@@ -42,8 +42,9 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 resolve: routeUserChecks.adminRole
             })
             .when('/edit-medicine', {
-                templateUrl: '/partials/medicine/edit-medicine.html',
-                controller: 'MedicineCtrl'
+                templateUrl: '/partials/medicine/edit-medicine',
+                controller: 'MedicineCtrl',
+                resolve: routeUserChecks.adminRole
             })
             /*            .when('/new-examination', {
                 templateUrl: 'views/partials/new-examination.html',

@@ -17,7 +17,9 @@ module.exports = function(app) {
     app.post('/logout', auth.logout);
 
     //create medicine
-    app.post('/new-medicine', controllers.MedicineCtrl.createMedicine);
+    app.post('/api/medicine', auth.isInRole('specialist'), controllers.MedicineCtrl.createMedicine);
+    app.get('/api/medicine',  controllers.MedicineCtrl.getAll);
+    app.put('/api/medicine', controllers.MedicineCtrl.updateMedicine);
 
     app.get('*', function(req, res) {
         res.render('index');

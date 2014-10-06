@@ -1,0 +1,3 @@
+select(id="name" ng-model="curMedicine" ng-options="medicine.name for medicine in medicines").form-control
+    option(value="{{medicine.name}}")
+            | {{medicine.name}}
