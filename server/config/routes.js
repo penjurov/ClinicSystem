@@ -8,6 +8,7 @@ module.exports = function (app) {
 
     // account
     app.get('/api/users', auth.isInRole('specialist'), controllers.users.getAllUsers);
+    app.get('/api/users/:id', controllers.users.getUserByUsername)
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
     app.delete('/api/users', auth.isAuthenticated, controllers.users.deleteUser);
@@ -30,7 +31,7 @@ module.exports = function (app) {
     app.put('/api/procedure', auth.isInRole('specialist'), controllers.ProcedureCtrl.updateProcedure);
 
     //examination
-    app.post('/new-examination', controllers.examinations.create);
+    app.post('/api/examination', controllers.examinations.create);
 
     // default
     app.get('*', function (req, res) {

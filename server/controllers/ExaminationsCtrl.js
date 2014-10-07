@@ -9,7 +9,7 @@ module.exports = {
             if (err) {
                 next(err);
             }
-            res.send(result, 200);
+            res.status(200).send(result);
         });
     },
     getByUserName: function(req, res) {
@@ -18,7 +18,7 @@ module.exports = {
                 return res.status(404).send('Examination could not be loaded: ' + err);
             }
 
-            res.send(collection);
+            res.status(200).send(collection);
         })
     },
     getById: function(req, res) {
@@ -27,7 +27,7 @@ module.exports = {
                 return res.status(404).send('Examination could not be loaded: ' + err);
             }
 
-            res.send(collection);
+            res.status(200).send(collection);
         })
     }
 };

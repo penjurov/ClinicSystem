@@ -4,7 +4,6 @@ app.factory('UsersResource', function($resource) {
         delete: {method: 'DELETE', isArray: false }
     });
 
-
     UsersResource.prototype.isSpecialist = function() {
         return (this.role && this.role === 'specialist');
     };

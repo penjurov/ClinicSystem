@@ -1,34 +1,37 @@
-'use strict';
+'use strict'
 
-app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResource', 'notifier', 'identity',
-    function ($scope, $location, examinationResource, notifier, identity) {
+app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notifier', 'identity', 'examinationResource', 'medicineResource',
+    function ($scope, $location, $resource, notifier, identity, examinationResource, medicineResource) {
         if (identity.currentUser === undefined) {
             notifier.error('Please login!');
             $location.path('/');
         }
 
-        $scope.medicines = [{
-            Name: 'Test Procedure'
-        }];
+        $scope.medicines = medicineResource.get();
 
         $scope.procedures = [{
             Name: 'Test Procedure'
         }];
 
         $scope.findPatient = function (patient) {
+            var User = $resource('api/users/:username', {username:'@username'});
+            var user = User.get({username:patient}, function(result) {
+                $scope.examination.patientId = result._id;
 
-            $scope.searchPatient = {
-                FirstName: patient,
-                LastName: patient,
-                Age: 13,
-                Gender: 'M',
-                History: 'Some'
-            };
-        };
+                $scope.searchPatient = {
+
+                    FirstName: result.firstName,
+                    LastName: result.lastName,
+                    Age: parseInt(result.age),
+                    Gender: result.gender,
+                    History: result.medicalHistory
+                }
+            });
+        }
 
         $scope.newExamination = function (examination) {
-            if (identity.currentUser === undefined) {
-                notifier.error('Please login!');
+            if (!identity.isAuthorizedForRole('specialist')) {
+                notifier.error('Please login as specialist!');
                 $location.path('/');
             } else {
                 examinationResource
@@ -40,7 +43,7 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResourc
                     }, function (err) {
                         notifier.error(err.message);
                         $location.path('/');
-                    });
+                    })
             }
-        };
+        }
     }]);
