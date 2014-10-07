@@ -5,6 +5,7 @@ var auth = require('./auth'),
 
 module.exports = function(app) {
     app.get('/api/users', auth.isInRole('specialist'), controllers.users.getAllUsers);
+    app.get('/api/users/:id', controllers.users.getUserByUsername)
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
     app.delete('/api/users', auth.isAuthenticated, controllers.users.deleteUser);

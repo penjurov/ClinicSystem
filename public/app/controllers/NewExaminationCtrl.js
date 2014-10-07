@@ -1,7 +1,7 @@
 'use strict'
 
-app.controller('NewExaminationCtrl', ['$scope', '$location', 'notifier', 'identity', 'examinationResource', 'medicineResource',
-    function ($scope, $location, notifier, identity, examinationResource, medicineResource) {
+app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notifier', 'identity', 'examinationResource', 'medicineResource',
+    function ($scope, $location, $resource, notifier, identity, examinationResource, medicineResource) {
         if (identity.currentUser === undefined) {
             notifier.error('Please login!');
             $location.path('/');
@@ -14,14 +14,19 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', 'notifier', 'identi
         }];
 
         $scope.findPatient = function (patient) {
+            var User = $resource('api/users/:username', {username:'@username'});
+            var user = User.get({username:patient}, function(result) {
+                $scope.examination.patientId = result._id;
 
-            $scope.searchPatient = {
-                FirstName: patient,
-                LastName: patient,
-                Age: 13,
-                Gender: 'M',
-                History: 'Some'
-            }
+                $scope.searchPatient = {
+
+                    FirstName: result.firstName,
+                    LastName: result.lastName,
+                    Age: parseInt(result.age),
+                    Gender: result.gender,
+                    History: result.medicalHistory
+                }
+            });
         }
 
         $scope.newExamination = function (examination) {

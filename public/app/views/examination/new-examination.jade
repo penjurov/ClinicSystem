@@ -6,7 +6,7 @@
                 .form-group
                     label(for="examination-patient").col-md-2.control-label Patient
                     .col-md-10
-                        input.form-control(id="examination-patient" type="text" placeholder="Patient number" ng-model="examination.PatientNumber" required="required")
+                        input.form-control(id="examination-patient" type="text" placeholder="Patient username" ng-model="examination.PatientNumber" required="required")
 
                 .pull-right
                     a.btn.btn-primary(href="" ng-click="findPatient(examination.PatientNumber)") Search
@@ -25,15 +25,15 @@
                 .form-group
                     label.col-md-2.control-label(for="patient-age") Age
                     .col-md-10
-                        input.form-control(id="patient-age" type="text" ng-model="searchPatient.Age" disabled="disabled" required="required")
+                        input.form-control(id="patient-age" type="text" ng-model="searchPatient.Age" disabled="disabled")
                 .form-group
                     label.col-md-2.control-label(for="patient-gender") Gender
                     .col-md-10
-                        input.form-control(id="patient-gender" ng-model="searchPatient.Gender" disabled="disabled" required="required")
+                        input.form-control(id="patient-gender" ng-model="searchPatient.Gender" disabled="disabled")
                 .form-group
                     label.col-md-2.control-label(for="patient-history") Medical history
                     .col-md-10
-                        textarea.form-control(id="patient-history" ng-model="searchPatient.History" disabled="disabled" required="required")
+                        textarea.form-control(id="patient-history" ng-model="searchPatient.History" disabled="disabled")
                 .form-group
                     label.col-md-2.control-label(for="examination-information") Information
                     .col-md-10
