@@ -1,0 +1,20 @@
+.container
+    .well
+        form.form-horizontal(name="createProcedure")
+            fieldset
+                legend Add new procedure
+                .form-group
+                    label(for="name").col-md-2.control-label Name:
+                    .col-md-10
+                        input(id="name" type="text" placeholder="Name" ng-model="procedure.name" required="required").form-control
+                .form-group
+                    label(for="desc").col-md-2.control-label Description:
+                    .col-md-10
+                        textarea(id="desc" type="text"  placeholder="Description" ng-model="procedure.desc" required="required").form-control
+                .form-group
+                    label(for="sideEffects").col-md-2.control-label Recovery / Post procedure(surgery):
+                    .col-md-10
+                        textarea(id="sideEffects" type="text"  placeholder="Post procedure activities (ex. relaxing)" ng-model="procedure.recovery").form-control
+                .pull-right
+                    button(ng-click="add(procedure)", ng-disabled="createProcedure.$invalid").btn.btn-primary Add
+                    a(href="#/" ).btn.btn-primary Cancel

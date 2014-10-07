@@ -1,0 +1,3 @@
+select(id="name" ng-model="curProcedure" ng-options="procedure.name for procedure in procedures").form-control
+    option(value="{{procedure.name}}")
+            | {{procedure.name}}

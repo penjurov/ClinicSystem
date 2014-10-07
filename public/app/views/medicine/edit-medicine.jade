@@ -1,8 +1,8 @@
 .container
     .well
-        form.form-horizontal(name="createMedicine")
+        form.form-horizontal(name="editMedicine")
             fieldset
-                legend Add new medicine
+                legend Edit existing medicine/drug
                 .form-group
                     label(for="name").col-md-2.control-label Name:
                     .col-md-10
@@ -20,5 +20,5 @@
                     .col-md-10
                         input(id="minAge" type="number"  placeholder="Age" min=0 ng-model="curMedicine.minAge" required="required").form-control
                 .pull-right
-                    button(ng-click="update(curMedicine)", ng-disabled="contactForm.$invalid").btn.btn-primary Update
+                    button(ng-click="update(curMedicine)", ng-disabled="editMedicine.$invalid").btn.btn-primary Update
                     a(href="#/" ).btn.btn-primary Cancel

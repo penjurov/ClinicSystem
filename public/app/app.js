@@ -46,11 +46,22 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 controller: 'MedicineCtrl',
                 resolve: routeUserChecks.adminRole
             })
+            .when('/new-procedure', {
+                templateUrl: '/partials/procedure/new-procedure',
+                controller: 'ProcedureCtrl',
+                resolve: routeUserChecks.adminRole
+            })
+            .when('/edit-procedure', {
+                templateUrl: '/partials/procedure/edit-procedure',
+                controller: 'ProcedureCtrl',
+                resolve: routeUserChecks.adminRole
+            })
             .when('/new-examination', {
                 templateUrl: '/partials/examination/new-examination',
                 controller: 'NewExaminationCtrl'
             })
-            /*.when('/list-examinations', {
+            /*
+            .when('/list-examinations', {
                 templateUrl: 'views/partials/list-examinations.html',
                 controller: 'ListExaminationsCtrl'
             })
@@ -62,14 +73,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 templateUrl: 'views/partials/patient-examinations.html',
                 controller: 'PatientExaminationsCtrl'
             })
-            .when('/new-procedure', {
-                templateUrl: 'views/partials/new-procedure.html',
-                controller: 'NewProcedureCtrl'
-            })
-            .when('/edit-procedure', {
-                templateUrl: 'views/partials/edit-procedure.html',
-                controller: 'EditProcedureCtrl'
-            })*/
+            */
             .when('/contact-us', {
                 templateUrl: '/partials/public/contact-us',
                 controller: 'ContactCtrl'

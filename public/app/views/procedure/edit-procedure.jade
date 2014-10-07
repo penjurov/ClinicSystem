@@ -1,0 +1,20 @@
+.container
+    .well
+        form.form-horizontal(name="editProcedure")
+            fieldset
+                legend Edit existing procedure
+                .form-group
+                    label(for="name").col-md-2.control-label Name:
+                    .col-md-10
+                        div(procedures)
+                .form-group
+                    label(for="desc").col-md-2.control-label Description:
+                    .col-md-10
+                        textarea(id="desc" type="text"  placeholder="Description" ng-model="curProcedure.desc" required="required").form-control
+                .form-group
+                    label(for="recovery").col-md-2.control-label Recovery / Post procedure(surgery):
+                    .col-md-10
+                        textarea(id="recovery" type="text"  placeholder="Post procedure activities (ex. relaxing)" ng-model="curProcedure.recovery").form-control
+                .pull-right
+                    button(ng-click="update(curProcedure)", ng-disabled="editProcedure.$invalid").btn.btn-primary Update
+                    a(href="#/" ).btn.btn-primary Cancel

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResource', 'notifier', 'identity',
     function ($scope, $location, examinationResource, notifier, identity) {
@@ -8,7 +8,7 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResourc
         }
 
         $scope.medicines = [{
-            Name: 'Test Medicine'
+            Name: 'Test Procedure'
         }];
 
         $scope.procedures = [{
@@ -23,8 +23,8 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResourc
                 Age: 13,
                 Gender: 'M',
                 History: 'Some'
-            }
-        }
+            };
+        };
 
         $scope.newExamination = function (examination) {
             if (identity.currentUser === undefined) {
@@ -40,7 +40,7 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResourc
                     }, function (err) {
                         notifier.error(err.message);
                         $location.path('/');
-                    })
+                    });
             }
-        }
+        };
     }]);

@@ -20,5 +20,5 @@
                     .col-md-10
                         input(id="minAge" type="number"  placeholder="Age" min=0 ng-model="medicine.minAge" required="required").form-control
                 .pull-right
-                    button(ng-click="add(medicine)", ng-disabled="contactForm.$invalid").btn.btn-primary Add
+                    button(ng-click="add(medicine)", ng-disabled="createMedicine.$invalid").btn.btn-primary Add
                     a(href="#/" ).btn.btn-primary Cancel

@@ -1,6 +1,7 @@
 var medicine = require('mongoose').model('Medicine');
 
 module.exports.createMedicine = function (req, res, next) {
+    'use strict';
     var newMedicine = req.body;
     medicine.create(newMedicine, function (err, result) {
         if (err) {
@@ -11,26 +12,27 @@ module.exports.createMedicine = function (req, res, next) {
 };
 
 module.exports.getAll = function (req, res, next) {
-    medicine.find({}).exec(function (err,result) {
-//        res.send(result);
+    'use strict';
+
+    medicine.find({}).exec(function (err, result) {
         res.json(result);
     });
 };
 
 module.exports.updateMedicine = function (req, res, next) {
+    'use strict';
+
     var updatedMedicine = req.body;
-    medicine.findById(updatedMedicine._id).exec(function (err,medicine) {
-    if (err){
-        return;
-    }
+    medicine.findById(updatedMedicine._id).exec(function (err, medicine) {
+        if (err) {
+            return;
+        }
         medicine.desc = updatedMedicine.desc;
         medicine.sideEffects = updatedMedicine.sideEffects;
-        medicine.minAge=updatedMedicine.minAge;
+        medicine.minAge = updatedMedicine.minAge;
 
         medicine.save(function () {
-//            res.json(medicine);
             res.redirect(201, '/');
-
         });
     });
 };

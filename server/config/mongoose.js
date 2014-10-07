@@ -1,9 +1,11 @@
 var mongoose = require('mongoose'),
     user = require('../models/User'),
     medicine = require('../models/Medicine'),
+    procedure = require('../models/Procedure'),
     examination = require('../models/Examination');
 
 module.exports = function(config) {
+    'use strict';
     mongoose.connect(config.db);
     var db = mongoose.connection;
 
@@ -21,6 +23,7 @@ module.exports = function(config) {
 
     user.seedInitialUsers();
     medicine.seedInitialMedicines();
+    procedure.seedInitialProcedures();
     examination.seedInitialExaminations();
 };
 
