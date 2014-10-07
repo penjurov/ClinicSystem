@@ -22,7 +22,7 @@ module.exports = function(app) {
     app.put('/api/medicine', controllers.MedicineCtrl.updateMedicine);
 
     //examination
-    app.post('/new-examination', controllers.examinations.create);
+    app.post('/api/examination', controllers.examinations.create);
 
     app.get('*', function(req, res) {
         res.render('index');

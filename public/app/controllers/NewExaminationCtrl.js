@@ -1,15 +1,13 @@
 'use strict'
 
-app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResource', 'notifier', 'identity',
-    function ($scope, $location, examinationResource, notifier, identity) {
+app.controller('NewExaminationCtrl', ['$scope', '$location', 'notifier', 'identity', 'examinationResource', 'medicineResource',
+    function ($scope, $location, notifier, identity, examinationResource, medicineResource) {
         if (identity.currentUser === undefined) {
             notifier.error('Please login!');
             $location.path('/');
         }
 
-        $scope.medicines = [{
-            Name: 'Test Medicine'
-        }];
+        $scope.medicines = medicineResource.get();
 
         $scope.procedures = [{
             Name: 'Test Procedure'
@@ -27,8 +25,8 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', 'examinationResourc
         }
 
         $scope.newExamination = function (examination) {
-            if (identity.currentUser === undefined) {
-                notifier.error('Please login!');
+            if (!identity.isAuthorizedForRole('specialist')) {
+                notifier.error('Please login as specialist!');
                 $location.path('/');
             } else {
                 examinationResource

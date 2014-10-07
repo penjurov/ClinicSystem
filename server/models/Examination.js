@@ -1,9 +1,17 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var examinationSchema = mongoose.Schema({
-    patientFirstName: { type: String, require: '{PATH} is required'},
-    patientLastName: { type: String, require: '{PATH} is required' },
-    age: Number
+var examinationSchema = new Schema({
+    Information: String,
+    Procedure: {
+        type: String,
+        ref: 'Procedure'
+    },
+    Medicine: {
+        type: Schema.ObjectId,
+        ref: 'Medicine'
+    },
+    Result: String
 });
 
 var Examination = mongoose.model('Examination', examinationSchema);
@@ -18,11 +26,12 @@ module.exports = {
 
             if(result.length === 0){
                 Examination.create({
-                    patientFirstName: 'Pesho',
-                    patientLastName: 'Petrov',
-                    age: 13
-                })
+                    Information: 'Has fever',
+                    Result: 'Patient is sick'
+                });
+
+                console.log('Seed examination added');
             }
-        })
+        });
     }
 };
