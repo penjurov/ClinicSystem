@@ -21,6 +21,9 @@ module.exports = function(app) {
     app.get('/api/medicine',  controllers.MedicineCtrl.getAll);
     app.put('/api/medicine', controllers.MedicineCtrl.updateMedicine);
 
+    //examination
+    app.post('/new-examination', controllers.examinations.create);
+
     app.get('*', function(req, res) {
         res.render('index');
     });

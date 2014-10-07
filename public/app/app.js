@@ -46,11 +46,11 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 controller: 'MedicineCtrl',
                 resolve: routeUserChecks.adminRole
             })
-            /*            .when('/new-examination', {
-                templateUrl: 'views/partials/new-examination.html',
+            .when('/new-examination', {
+                templateUrl: '/partials/examination/new-examination',
                 controller: 'NewExaminationCtrl'
             })
-            .when('/list-examinations', {
+            /*.when('/list-examinations', {
                 templateUrl: 'views/partials/list-examinations.html',
                 controller: 'ListExaminationsCtrl'
             })

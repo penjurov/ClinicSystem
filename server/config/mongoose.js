@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     user = require('../models/User'),
-    medicine = require('../models/Medicine');
+    medicine = require('../models/Medicine'),
+    examination = require('../models/Examination');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -20,5 +21,6 @@ module.exports = function(config) {
 
     user.seedInitialUsers();
     medicine.seedInitialMedicines();
+    examination.seedInitialExaminations();
 };
 
