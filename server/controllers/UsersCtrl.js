@@ -66,9 +66,9 @@ module.exports = {
             res.send(result);
         })
     },
-    getPacientById: function (req, res) {
+    getPatientById: function (req, res) {
         if (req.user._id || req.user.role == 'specialist') {
-            User.findOne({_id: req.params['pacientNumber']}).exec(function (error, result) {
+            User.findOne({_id: req.params['patientNumber']}).exec(function (error, result) {
                 if(error){
                     return res.status(404).send('Users could not be loaded: ' + error);
                 }
