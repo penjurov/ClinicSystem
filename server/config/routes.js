@@ -14,6 +14,10 @@ module.exports = function (app) {
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
     app.delete('/api/users', auth.isAuthenticated, controllers.users.deleteUser);
 
+    // specialists
+
+    app.get('/api/specialists', controllers.specialists.getAllSpecialists);
+
     app.get('/partials/:partialArea/:partialName', function (req, res) {
         res.render('../../public/app/views/' + req.params.partialArea + '/' + req.params.partialName);
     });
@@ -28,7 +32,7 @@ module.exports = function (app) {
 
     // procedure
     app.post('/api/procedure', auth.isInRole('specialist'), controllers.ProcedureCtrl.createProcedure);
-    app.get('/api/procedure', auth.isInRole('specialist'), controllers.ProcedureCtrl.getAll);
+    app.get('/api/procedure', controllers.ProcedureCtrl.getAll);
     app.put('/api/procedure', auth.isInRole('specialist'), controllers.ProcedureCtrl.updateProcedure);
 
     //examination

@@ -14,7 +14,7 @@ module.exports.createProcedure = function (req, res, next) {
 
 module.exports.getAll = function (req, res, next) {
     'use strict';
-
+    console.log('here');
     procedure.find({}).exec(function (err, result) {
         res.json(result);
     });

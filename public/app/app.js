@@ -74,6 +74,17 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 controller: 'PatientExaminationsCtrl'
             })
             */
+            .when('/about', {
+                templateUrl: '/partials/public/about'
+            })
+            .when('/list-specialists', {
+                templateUrl: '/partials/public/specialists',
+                controller: 'ListSpecialistsCtrl'
+            })
+            .when('/list-procedures', {
+                templateUrl: '/partials/public/procedures',
+                controller: 'ProcedureCtrl'
+            })
             .when('/contact-us', {
                 templateUrl: '/partials/public/contact-us',
                 controller: 'ContactCtrl'

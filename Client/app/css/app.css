@@ -74,11 +74,11 @@ input.ng-dirty.ng-valid.validity {
     height: 100%;
 }
 
-.offers {
+.project-table {
     margin:auto;
 }
 
-.offers th, .offers {
+.project-table th, .project-table {
     text-align: center;
 }
 
