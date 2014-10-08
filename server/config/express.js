@@ -10,9 +10,11 @@ module.exports = function (app, config) {
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
 
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
     app.use(cookieParser());
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}));
 
     app.use(session({secret: '<mysecret>', saveUninitialized: true, resave: true}));
     app.use(stylus.middleware({
@@ -22,7 +24,6 @@ module.exports = function (app, config) {
         }}));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.static(config.rootPath + '/public'));
 
     // development only
     if ('development' == app.get('env')) {
@@ -30,4 +31,5 @@ module.exports = function (app, config) {
         app.use(errorHandler());
     }
 
+    app.use(express.static(config.rootPath + '/public'));
 };
