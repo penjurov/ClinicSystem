@@ -42,7 +42,7 @@
                     label.col-md-2.control-label(for="choose-procedure") Select procedure
                     .col-md-10
                         select.form-control(id="choose-procedure" ng-model="examination.Procedure")
-                            option(ng-repeat="selectedProcedure in procedures" value="{{selectedProcedure.Id}}") {{ selectedProcedure.Name }}
+                            option(ng-repeat="selectedProcedure in procedures" value="{{selectedProcedure._id}}") {{ selectedProcedure.name }}
                 .form-group
                     label.col-md-2.control-label(for="choose-medicine") Select medicine:
                     .col-md-10
