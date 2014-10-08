@@ -1,5 +1,5 @@
-app.factory('examinationResource', ['$resource', 'baseServiceUrl', function ($resource, baseServiceUrl) {
-    var examinationApi = baseServiceUrl + '/api/examination';
+app.factory('examinationResource', ['$resource', function ($resource) {
+    var examinationApi = '/api/examination';
     var examinationResource = $resource( examinationApi, null, {
         update: {method: 'PUT', isArray: false},
         post: {method: 'POST', isArray: false }

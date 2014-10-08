@@ -1,7 +1,7 @@
-app.factory('procedureResource', ['$resource', 'baseServiceUrl', function ($resource, baseServiceUrl) {
+app.factory('procedureResource', ['$resource', function ($resource) {
     'use strict';
 
-    var procedureApi = baseServiceUrl + '/api/procedure';
+    var procedureApi = '/api/procedure';
     var medicineResource = $resource( procedureApi, null, {
         update: {method: 'PUT', isArray: false},
         post: {method: 'POST', isArray: false },

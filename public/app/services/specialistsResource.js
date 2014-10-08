@@ -1,14 +1,15 @@
-app.factory('specialistsResource', ['$resource', 'baseServiceUrl', function ($resource, baseServiceUrl) {
+app.factory('specialistsResource', function ($http, $q, $resource) {
     'use strict';
 
-    var specialistsApi = baseServiceUrl + '/api/specialists';
-    var specialistsResource = $resource( specialistsApi, null, {
-        get: {method:'GET', isArray:true}
-    });
-
     return {
-        get: function(){
-            return specialistsResource.get();
+        get: function() {
+            var deferred = $q.defer();
+
+            $http.get('/api/specialists').success(function(data) {
+                deferred.resolve(data);
+            });
+
+            return deferred.promise;
         }
     };
-}]);
+});
