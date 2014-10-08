@@ -9,14 +9,15 @@ module.exports = function (app) {
     // account
     app.get('/api/users', auth.isInRole('specialist'), controllers.users.getAllUsers);
     app.get('/api/users/:id', controllers.users.getUserByUsername);
-    app.get('/api/users/:patientNumber', controllers.users.getPatientById);
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
     app.delete('/api/users', auth.isAuthenticated, controllers.users.deleteUser);
 
     // specialists
-
     app.get('/api/specialists', controllers.specialists.getAllSpecialists);
+
+    // patients
+    app.get('/api/patients', auth.isInRole('specialist'), controllers.patients.getAllPatients);
 
     app.get('/partials/:partialArea/:partialName', function (req, res) {
         res.render('../../public/app/views/' + req.params.partialArea + '/' + req.params.partialName);
