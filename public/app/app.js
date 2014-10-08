@@ -14,8 +14,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 }
             }
         };
-
-        $routeProvider
+	        $routeProvider
             .when('/register-patient', {
                 templateUrl: '/partials/patient/patient-register',
                 controller: 'SignUpCtrl',
