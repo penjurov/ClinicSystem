@@ -1,0 +1,49 @@
+.container
+    .well
+        form.form-horizontal(name="examinationViewForm")
+            fieldset
+                legend View examination
+                .form-group
+                    label.col-md-2.control-label(for="examination-patient") Patient
+                    .col-md-10
+                        input.form-control(id="examination-patient" type="text" placeholder="Patient number" ng-model="examination.PatientNumber" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="patient-first-name") First name
+                    div.col-md-10
+                        input.form-control(id="patient-first-name" type="text" ng-model="searchPatient.FirstName" disabled="disabled" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="patient-last-name") Last Name
+                    div.col-md-10
+                        input.form-control(id="patient-last-name" type="text" ng-model="searchPatient.LastName" disabled="disabled" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="patient-age") Age
+                    .col-md-10
+                        input.form-control(id="patient-age" type="text" ng-model="searchPatient.Age" disabled="disabled" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="patient-gender") Gender
+                    .col-md-10
+                        input.form-control(id="patient-gender" ng-model="searchPatient.Gender" disabled="disabled" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="patient-history") Medical history
+                    .col-md-10
+                        textarea.form-control(id="patient-history" ng-model="searchPatient.History" disabled="disabled" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="examination-information") Information
+                    .col-md-10
+                        textarea.form-control(id="examination-information" placeholder="Information" ng-model="examination.Information" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="choose-procedure") Select procedure:
+                    .col-md-10
+                        select.form-control(id="choose-procedure" ng-model="examination.Procedure")
+                            option(ng-repeat="selectedProcedure in procedures" value="{{selectedProcedure.Id}}") {{ selectedProcedure.Name }}
+                .form-group
+                    label.col-md-2.control-label(for="choose-medicine") Select medicine:
+                    .col-md-10
+                        select.form-control(id="choose-medicine" ng-model="examination.Medicine")
+                            option(ng-repeat="selectedMedicine in medicines" value="{{selectedMedicine.Id}}") {{ selectedMedicine.Name }}
+                .form-group
+                    label.col-md-2.control-label(for="examination-results") Result
+                    .col-md-10
+                        textarea.form-control(id="examination-results" placeholder="Result" ng-model="examination.Result" required="required")
+    </div>
+</div>

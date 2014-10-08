@@ -10,10 +10,6 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notif
         $scope.medicines = medicineResource.get();
         $scope.procedures = procedureResource.get();
 
-//        $scope.procedures = [{
-//            Name: 'Test Procedure'
-//        }];
-
         $scope.findPatient = function (patient) {
             var User = $resource('api/users/:username', {username:'@username'});
             var user = User.get({username:patient}, function(result) {

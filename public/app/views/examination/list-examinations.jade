@@ -1,0 +1,29 @@
+.container
+    .well
+        form.form-horizontal(name="listExaminationForm")
+            fieldset
+                .form-group.pull-right
+                    label.col-md-3.control-label Search:
+                    .col-md-9
+                        input.form-control(type="text" placeholder="Search..." ng-model="search")
+        .pull-right(pagination  max-size="maxSize" total-items="totalItems" ng-model="currentPage")
+        table.table.table-striped.table-hover.offers
+            col(width="10%")
+            col(width="10%")
+            col(width="35%")
+            col(width="35%")
+            col(width="10%")
+            thead
+                tr
+                th Patient First name
+                th Patient Last name
+                th Information
+                th Result
+            tbody
+                tr(ng-repeat="examination in filteredExaminations | filter: search | limitTo : numPerPage")
+                    td {{examination.Patient.FirstName}}</td>
+                    td {{examination.Patient.LastName}}</td>
+                    td {{examination.Information}}</td>
+                    td {{examination.Result}}</td>
+                    td
+                        a.btn.btn-primary(ng-click="viewExamination(examination.Id)") View

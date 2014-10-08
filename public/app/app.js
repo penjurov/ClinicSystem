@@ -60,20 +60,18 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 templateUrl: '/partials/examination/new-examination',
                 controller: 'NewExaminationCtrl'
             })
-            /*
             .when('/list-examinations', {
-                templateUrl: 'views/partials/list-examinations.html',
+                templateUrl: 'partials/examination/list-examinations',
                 controller: 'ListExaminationsCtrl'
             })
             .when('/view-examination', {
-                templateUrl: 'views/partials/view-examination.html',
+                templateUrl: 'partials/examination/view-examination',
                 controller: 'ViewExaminationCtrl'
             })
             .when('/patient-examinations', {
-                templateUrl: 'views/partials/patient-examinations.html',
+                templateUrl: 'partials/examination/patient-examinations',
                 controller: 'PatientExaminationsCtrl'
             })
-            */
             .when('/about', {
                 templateUrl: '/partials/public/about'
             })
