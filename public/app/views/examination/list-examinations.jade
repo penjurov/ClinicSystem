@@ -21,9 +21,9 @@
                 th Result
             tbody
                 tr(ng-repeat="examination in filteredExaminations | filter: search | limitTo : numPerPage")
-                    td {{examination.Patient.FirstName}}</td>
-                    td {{examination.Patient.LastName}}</td>
-                    td {{examination.Information}}</td>
-                    td {{examination.Result}}</td>
+                    td {{examination.Patient.firstName}}
+                    td {{examination.Patient.lastName}}
+                    td {{examination.Information}}
+                    td {{examination.Result}}
                     td
                         a.btn.btn-primary(ng-click="viewExamination(examination.Id)") View

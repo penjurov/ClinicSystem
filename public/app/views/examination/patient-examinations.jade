@@ -21,8 +21,8 @@
                     th Result
             tbody
                 tr(ng-repeat="examination in examinations | filter: search ")
-                    td {{examination.specialistId}}
-                    td {{examination.Specialist.LastName}}
+                    td {{examination.Specialist.firstName}}
+                    td {{examination.Specialist.lastName}}
                     td {{examination.Information}}
                     td {{examination.Result}}
                     td

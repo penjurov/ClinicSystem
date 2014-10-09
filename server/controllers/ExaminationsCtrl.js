@@ -68,12 +68,15 @@ module.exports = {
         })
     },
     getAllByUserId: function(req, res) {
-
-        Examination.find({patientId: req.params.userId}).exec(function(err, collection) {
+        Examination.find({Patient: req.params.userId})
+            .populate('Specialist', 'firstName lastName')
+            .populate('Patient', 'firstName lastName')
+            .populate('Medicine', 'name')
+            .populate('Procedure', 'name')
+            .exec(function(err, collection) {
             if (err) {
                 return res.status(404).send('Examination could not be loaded: ' + err);
             }
-
 
             res.status(200).send(collection);
         })
