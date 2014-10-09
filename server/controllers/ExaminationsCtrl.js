@@ -1,15 +1,61 @@
 var User = require('mongoose').model('User');
+var Procedure = require('mongoose').model('Procedure');
+var Medicine = require('mongoose').model('Medicine');
 var Examination = require('mongoose').model('Examination');
 
 module.exports = {
     create: function(req, res, next) {
-        var newExaminationData = req.body;
+        var specialist,
+            patient,
+            medicine,
+            procedure;
 
-        Examination.create(newExaminationData, function (err, result) {
+        User.find({_id: req.body.specialistId}).exec(function (err, result) {
             if (err) {
-                next(err);
+                return res.status(404).send('Cannot find the specialist: ' + err);
             }
-            res.status(200).send(result);
+            specialist = result[0];
+
+            User.find({_id: req.body.patientId}).exec(function (err, result) {
+                if (err) {
+                    return res.status(404).send('Cannot find the patient: ' + err);
+                }
+                patient = result[0];
+
+                Procedure.find({_id: req.body.Procedure}).exec(function (err, result) {
+                    if (err) {
+                        return res.status(404).send('Cannot find the procedure: ' + err);
+                    }
+                    procedure = result[0];
+
+                    Medicine.find({_id: req.body.Medicine}).exec(function (err, result) {
+                        if (err) {
+                            return res.status(404).send('Cannot find the medicine: ' + err);
+                        }
+                        medicine = result[0];
+
+
+
+                        var newExaminationData = {
+                            Patient : patient,
+                            Specialist: specialist,
+                            Medicine: medicine,
+                            Procedure: procedure,
+                            Information: req.body.Information,
+                            Result: req.body.Result
+                        };
+
+                        console.log(newExaminationData);
+
+                        Examination.create(newExaminationData, function (err, result) {
+                            if (err) {
+                                next(err);
+                            }
+                            res.status(200).send(result);
+                        });
+                    });
+                });
+            });
         });
     },
     getById: function(req, res) {

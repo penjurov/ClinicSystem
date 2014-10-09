@@ -2,17 +2,17 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var examinationSchema = new Schema({
-    specialistId: {
+    Specialist: {
         type: Schema.ObjectId,
         ref: 'User'
     },
-    patientId: {
+    Patient: {
         type: Schema.ObjectId,
         ref: 'User'
     },
     Information: String,
     Procedure: {
-        type: String,
+        type: Schema.ObjectId,
         ref: 'Procedure'
     },
     Medicine: {

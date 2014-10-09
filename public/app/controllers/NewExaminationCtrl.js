@@ -12,7 +12,7 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notif
 
         $scope.findPatient = function (patient) {
             var User = $resource('api/users/:username', {username:'@username'});
-            var user = User.get({username:patient}, function(result) {
+            var user = User.get({username:patient.toLowerCase()}, function(result) {
                 $scope.examination.patientId = result._id;
 
                 $scope.searchPatient = {
