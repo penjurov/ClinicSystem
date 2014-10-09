@@ -1,5 +1,8 @@
 ## ClinicSystem  
 
+Live demo : http://clinicsystem.herokuapp.com  
+
+
 MEAN health information software for small clinic. The system provides following options:
 
 ###Specialists
