@@ -4,10 +4,6 @@
             fieldset
                 legend View examination
                 .form-group
-                    label.col-md-2.control-label(for="examination-patient") Patient
-                    .col-md-10
-                        input.form-control(id="examination-patient" type="text" disabled="disabled" ng-model="username" required="required")
-                .form-group
                     label.col-md-2.control-label(for="patient-first-name") First name
                     div.col-md-10
                         input.form-control(id="patient-first-name" type="text" ng-model="examination.Patient.firstName" disabled="disabled" required="required")
@@ -26,7 +22,7 @@
                 .form-group
                     label.col-md-2.control-label(for="patient-history") Medical history
                     .col-md-10
-                        textarea.form-control(id="patient-history" ng-model="examination.Patient.history" disabled="disabled" required="required")
+                        textarea.form-control(id="patient-history" ng-model="examination.Patient.medicalHistory" disabled="disabled" required="required")
                 .form-group
                     label.col-md-2.control-label(for="examination-information") Information
                     .col-md-10
@@ -43,4 +39,8 @@
                     label.col-md-2.control-label(for="examination-results") Result
                     .col-md-10
                         textarea.form-control(id="examination-results" placeholder="Result" disabled="disabled" ng-model="examination.Result" required="required")
+                .form-group
+                    label.col-md-2.control-label(for="patient-first-name") Specialist
+                    div.col-md-10
+                        input.form-control(id="patient-first-name" type="text" ng-model="examination.Specialist" disabled="disabled" required="required")
    

@@ -11,8 +11,10 @@ app.controller('ViewExaminationCtrl', ['$scope', '$resource', '$location', '$rou
 
         var Examination = $resource('api/examination/:id', {id:'@id'});
         var examination = Examination.get({id:$routeParams.id}, function(result) {
+            console.log(result);
 
             $scope.examination = {
+                Specialist: result.Specialist.firstName + ' ' + result.Specialist.lastName,
                 Patient: result.Patient,
                 Information: result.Information,
                 Procedure: result.Procedure.name,

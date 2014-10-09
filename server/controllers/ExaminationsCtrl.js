@@ -62,7 +62,7 @@ module.exports = {
 
         Examination.findOne({_id: req.params.id})
             .populate('Specialist', 'firstName lastName')
-            .populate('Patient', 'firstName lastName')
+            .populate('Patient', 'firstName lastName age gender medicalHistory')
             .populate('Medicine', 'name')
             .populate('Procedure', 'name')
             .exec(function(err, collection) {
@@ -76,7 +76,7 @@ module.exports = {
     getAllByUserId: function(req, res) {
         Examination.find({Patient: req.params.userId})
             .populate('Specialist', 'firstName lastName')
-            .populate('Patient', 'firstName lastName')
+            .populate('Patient', 'firstName lastName age gender medicalHistory')
             .populate('Medicine', 'name')
             .populate('Procedure', 'name')
             .exec(function(err, collection) {
@@ -89,7 +89,7 @@ module.exports = {
     },
     getAllBySpecialistId: function(req, res) {
         Examination.find({Specialist: req.params.userId})
-            .populate('Specialist', 'firstName lastName age gender medicalHistory')
+            .populate('Specialist', 'firstName lastName')
             .populate('Patient', 'firstName lastName age gender medicalHistory')
             .populate('Medicine', 'name')
             .populate('Procedure', 'name')
