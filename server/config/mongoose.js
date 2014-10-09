@@ -24,6 +24,5 @@ module.exports = function(config) {
     user.seedInitialUsers();
     medicine.seedInitialMedicines();
     procedure.seedInitialProcedures();
-    examination.seedInitialExaminations();
 };
 
