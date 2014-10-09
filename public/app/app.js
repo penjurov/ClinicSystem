@@ -8,13 +8,18 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                     return auth.isAuthorizedForRole('specialist');
                 }
             },
+            patientRole: {
+                authenticate: function(auth) {
+                    return auth.isAuthorizedForRole('patient');
+                }
+            },
             authenticated: {
                 authenticate: function(auth) {
                     return auth.isAuthenticated();
                 }
             }
         };
-	        $routeProvider
+        $routeProvider
             .when('/register-patient', {
                 templateUrl: '/partials/patient/patient-register',
                 controller: 'SignUpCtrl',
@@ -22,9 +27,10 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
             })
             .when('/view-patients', {
                 templateUrl: 'views/partials/view-patients.html',
-                controller: 'ViewPatientsCtrl'
+                controller: 'ViewPatientsCtrl',
+                resolve: routeUserChecks.adminRole
             })
-           .when('/register-specialist', {
+            .when('/register-specialist', {
                 templateUrl: '/partials/specialist/specialist-register',
                 controller: 'SignUpCtrl',
                 resolve: routeUserChecks.adminRole
@@ -37,7 +43,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
             .when('/profile-patient', {
                 templateUrl: '/partials/patient/patient-profile',
                 controller: 'ProfileCtrl',
-                resolve: routeUserChecks.authenticated
+                resolve: routeUserChecks.patientRole
             })
             .when('/new-medicine', {
                 templateUrl: '/partials/medicine/new-medicine',
@@ -61,19 +67,23 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
             })
             .when('/new-examination', {
                 templateUrl: '/partials/examination/new-examination',
-                controller: 'NewExaminationCtrl'
+                controller: 'NewExaminationCtrl',
+                resolve: routeUserChecks.adminRole
             })
             .when('/list-examinations', {
                 templateUrl: 'partials/examination/list-examinations',
-                controller: 'ListExaminationsCtrl'
+                controller: 'ListExaminationsCtrl',
+                resolve: routeUserChecks.adminRole
             })
             .when('/view-examination/:id', {
                 templateUrl: 'partials/examination/view-examination',
-                controller: 'ViewExaminationCtrl'
+                controller: 'ViewExaminationCtrl',
+                resolve: routeUserChecks.authenticated
             })
             .when('/patient-examinations', {
                 templateUrl: 'partials/examination/patient-examinations',
-                controller: 'PatientExaminationsCtrl'
+                controller: 'PatientExaminationsCtrl',
+                resolve: routeUserChecks.patientRole
             })
             .when('/about', {
                 templateUrl: '/partials/public/about'
