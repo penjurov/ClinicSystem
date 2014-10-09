@@ -25,9 +25,9 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 controller: 'SignUpCtrl',
                 resolve: routeUserChecks.adminRole
             })
-            .when('/view-patients', {
-                templateUrl: 'views/partials/view-patients.html',
-                controller: 'ViewPatientsCtrl',
+            .when('/list-patients', {
+                templateUrl: '/partials/patient/list-patients',
+                controller: 'ListPatientsCtrl',
                 resolve: routeUserChecks.adminRole
             })
             .when('/register-specialist', {
