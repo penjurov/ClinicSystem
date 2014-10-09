@@ -20,6 +20,10 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 controller: 'SignUpCtrl',
                 resolve: routeUserChecks.adminRole
             })
+            .when('/view-patients', {
+                templateUrl: 'views/partials/view-patients.html',
+                controller: 'ViewPatientsCtrl'
+            })
            .when('/register-specialist', {
                 templateUrl: '/partials/specialist/specialist-register',
                 controller: 'SignUpCtrl',
