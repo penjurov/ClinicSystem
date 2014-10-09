@@ -101,7 +101,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 controller: 'ContactCtrl'
             })
             .when('/unauthorized', {
-                template: "<h1>unauthorized</h1>"
+                templateUrl: "/partials/public/unauthorized"
             })
             .otherwise({ redirectTo: '/' });
     }])

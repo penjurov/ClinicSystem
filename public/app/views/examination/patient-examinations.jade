@@ -7,22 +7,18 @@
                     .col-md-9
                         input.form-control(type="text" placeholder="Search..." ng-model="search")
 
-        table.table.table-striped.table-hover.offers
-            col(width="10%")
-            col(width="10%")
+        table.table.table-striped.table-hover.project-table
+            col(width="30%")
             col(width="35%")
             col(width="35%")
-            col(width="10%")
             thead
                 tr
-                    th Specialist First name
-                    th Specialist Last name
+                    th Specialist
                     th Information
                     th Result
             tbody
                 tr(ng-repeat="examination in examinations | filter: search ")
-                    td {{examination.Specialist.firstName}}
-                    td {{examination.Specialist.lastName}}
+                    td {{examination.Specialist.firstName + ' ' + examination.Specialist.lastName}}
                     td {{examination.Information}}
                     td {{examination.Result}}
                     td

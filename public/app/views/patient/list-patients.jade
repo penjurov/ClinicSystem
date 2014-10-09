@@ -7,19 +7,20 @@
                     .col-md-9
                         input(type="text" placeholder="Search..." ng-model="search").form-control
         table.table.table-striped.table-hover.project-table
-            col(width="40%")
             col(width="20%")
-            col(width="20%")
-            col(width="20%")
+            col(width="5%")
+            col(width="10%")
+            col(width="35%")
+            col(width="15%")
+            col(width="15%")
             thead
                 tr
-                    th Names
+                    th Name
                     th Age
                     th Gender
                     th Medical History
                     th Phone
                     th Email
-                    th Patient Number
             tbody
                 tr(ng-repeat="patient in patients | filter: search")
                     td {{patient.firstName + ' ' + patient.lastName}}
@@ -28,4 +29,3 @@
                     td {{patient.medicalHistory}}
                     td {{patient.phone}}
                     td {{patient.email}}
-                    td {{patient.patientNumber}}
