@@ -55,15 +55,15 @@ module.exports.seedInitialUsers = function() {
 
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'PeshoPeshov', firstName: 'Pesho', lastName: 'Peshov', age: '31', gender: 'male', medicalHistory: 'Nothing special', patientNumber: '111111', salt: salt, hashPass: hashedPwd, role: 'patient'});
+            User.create({username: 'PeshoPeshov', firstName: 'Pesho', lastName: 'Peshov', age: '31', gender: 'male', medicalHistory: 'Nothing special', patientNumber: '111111', email: 'peshppeshov@abv.bg', phone: '0888/888888', salt: salt, hashPass: hashedPwd, role: 'patient'});
 
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'GoshoGoshov', firstName: 'Gosho', lastName: 'Goshov', age: '26', gender: 'male', medicalHistory: 'Very ill', patientNumber: '222222', salt: salt, hashPass: hashedPwd, role: 'patient'});
+            User.create({username: 'GoshoGoshov', firstName: 'Gosho', lastName: 'Goshov', age: '26', gender: 'male', medicalHistory: 'Very ill', patientNumber: '222222', email: 'gosho@abv.bg', phone: '0888/999999', salt: salt, hashPass: hashedPwd, role: 'patient'});
 
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'PenkaPenkova', firstName: 'Penka', lastName: 'Penkova', age: '19', gender: 'female', medicalHistory: 'Oh my god', patientNumber: '333333', salt: salt, hashPass: hashedPwd, role: 'patient'});
+            User.create({username: 'PenkaPenkova', firstName: 'Penka', lastName: 'Penkova', age: '19', gender: 'female', medicalHistory: 'Oh my god', patientNumber: '333333', email: 'penka@gmail.com', phone: '0888/777777', salt: salt, hashPass: hashedPwd, role: 'patient'});
 
             console.log("Starting users created");
         }
