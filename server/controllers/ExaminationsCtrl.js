@@ -69,7 +69,7 @@ module.exports = {
     },
     getAllByUserId: function(req, res) {
 
-        Examination.find({patientId: req.params.userId}).exec(function(err, collection) {
+        Examination.find({Patient: req.params.userId}).exec(function(err, collection) {
             if (err) {
                 return res.status(404).send('Examination could not be loaded: ' + err);
             }
