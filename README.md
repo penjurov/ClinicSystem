@@ -4,8 +4,10 @@
 MEAN health information software for small clinic. The system provides following options:
 
 ###Specialists
-  Creating - available only if another specialist is logged into system
-  Updating - available only if logged in
+  Creating - available only if another specialist is logged into system  
+  
+  Updating - available only if logged in  
+  
 
 ###Patients
   Creating - available only from logged specialist
