@@ -37,8 +37,10 @@ module.exports = function (app) {
     app.put('/api/procedure', auth.isInRole('specialist'), controllers.ProcedureCtrl.updateProcedure);
 
     //examination
-    app.post('/api/examination', controllers.examinations.create);
-    app.get('/api/examination/:id', controllers.examinations.getAllByUserId);
+    app.post('/api/examinations', controllers.examinations.create);
+    app.get('/api/examinations/:userId', controllers.examinations.getAllByUserId);
+    app.get('/api/examination/:id', controllers.examinations.getById);
+
 
     // default
     app.get('*', function (req, res) {

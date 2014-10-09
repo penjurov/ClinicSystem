@@ -8,16 +8,13 @@ app.controller('PatientExaminationsCtrl', ['$scope', '$location', 'examinationRe
         }
 
         $scope.examinations = examinationResource.getAllByUserId(identity.currentUser._id);
-        console.log($scope.examinations);
-        $scope.listExaminations = function() {
+
+        $scope.viewExamination = function(id) {
             if (identity.currentUser === undefined) {
                 notifier.error('Please login!');
                 $location.path('/');
             } else {
-
-                $scope.examinations = examinationResource.getAllByUserId(identity.currentUser._id);
-                console.log($scope.examinations)
-
+                $location.path('/view-examination/' + id);
             }
         };
     }]);

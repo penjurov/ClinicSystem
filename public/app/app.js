@@ -63,7 +63,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies', 'ui.boo
                 templateUrl: 'partials/examination/list-examinations',
                 controller: 'ListExaminationsCtrl'
             })
-            .when('/view-examination', {
+            .when('/view-examination/:id', {
                 templateUrl: 'partials/examination/view-examination',
                 controller: 'ViewExaminationCtrl'
             })
