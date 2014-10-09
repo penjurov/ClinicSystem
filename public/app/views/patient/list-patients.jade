@@ -1,0 +1,31 @@
+.container
+    .well
+        form.form-horizontal
+            fieldset
+                .form-group.pull-right
+                    label.col-md-3.control-label Search:
+                    .col-md-9
+                        input(type="text" placeholder="Search..." ng-model="search").form-control
+        table.table.table-striped.table-hover.project-table
+            col(width="40%")
+            col(width="20%")
+            col(width="20%")
+            col(width="20%")
+            thead
+                tr
+                    th Names
+                    th Age
+                    th Gender
+                    th Medical History
+                    th Phone
+                    th Email
+                    th Patient Number
+            tbody
+                tr(ng-repeat="patient in patients | filter: search")
+                    td {{patient.firstName + ' ' + patient.lastName}}
+                    td {{patient.age}}
+                    td {{patient.gender}}
+                    td {{patient.medicalHistory}}
+                    td {{patient.phone}}
+                    td {{patient.email}}
+                    td {{patient.patientNumber}}
