@@ -31,6 +31,8 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notif
                 notifier.error('Please login as specialist!');
                 $location.path('/');
             } else {
+                examination.specialistId = identity.currentUser._id;
+
                 examinationResource
                     .add(examination)
                     .$promise

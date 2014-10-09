@@ -2,6 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var examinationSchema = new Schema({
+    specialistId: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
     patientId: {
         type: Schema.ObjectId,
         ref: 'User'

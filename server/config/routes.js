@@ -38,6 +38,7 @@ module.exports = function (app) {
 
     //examination
     app.post('/api/examination', controllers.examinations.create);
+    app.get('/api/examination/:id', controllers.examinations.getAllByUserId);
 
     // default
     app.get('*', function (req, res) {

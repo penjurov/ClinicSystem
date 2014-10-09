@@ -21,11 +21,13 @@ module.exports = {
             res.status(200).send(collection);
         })
     },
-    getById: function(req, res) {
-        User.find({}).exec(function(err, collection) {
+    getAllByUserId: function(req, res) {
+
+        Examination.find({patientId: req.params.id}).exec(function(err, collection) {
             if (err) {
                 return res.status(404).send('Examination could not be loaded: ' + err);
             }
+
 
             res.status(200).send(collection);
         })

@@ -1,17 +1,17 @@
 app.factory('examinationResource', ['$resource', function ($resource) {
-    var examinationApi = '/api/examination';
+    var examinationApi = '/api/examination/:id';
     var examinationResource = $resource( examinationApi, null, {
         update: {method: 'PUT', isArray: false},
         post: {method: 'POST', isArray: false },
-        get: {method:'GET', isArray:true}
+        getByUserId: {method:'GET', params:{id: '@id'}, isArray:true}
     });
 
     return {
         add: function (examination) {
             return examinationResource.post(examination);
         },
-        getAll: function(){
-            return examinationResource.get();
+        getAllByUserId: function(id){
+            return examinationResource.getByUserId({id: id});
         }
     };
 }]);
