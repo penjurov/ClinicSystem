@@ -1,5 +1,4 @@
-## ClinicSystem
-===============
+## ClinicSystem  
 
 MEAN health information software for small clinic. The system provides following options:
 
