@@ -9,6 +9,7 @@ app.controller('PatientExaminationsCtrl', ['$scope', '$location', 'examinationRe
 
         $scope.examinations = examinationResource.getAllByUserId(identity.currentUser._id);
 
+
         $scope.viewExamination = function(id) {
             if (identity.currentUser === undefined) {
                 notifier.error('Please login!');
