@@ -11,28 +11,15 @@ app.controller('ViewExaminationCtrl', ['$scope', '$resource', '$location', '$rou
 
         var Examination = $resource('api/examination/:id', {id:'@id'});
         var examination = Examination.get({id:$routeParams.id}, function(result) {
+
             $scope.examination = {
+                Patient: result.Patient,
                 Information: result.Information,
-                Procedure: result.Procedure,
-                Medicine: result.Medicine,
+                Procedure: result.Procedure.name,
+                Medicine: result.Medicine.name,
                 Result: result.Result
             }
-
-            var User = $resource('api/users/:username', {username:'@username'});
-
-            var user = User.get({username: identity.currentUser.username}, function(result) {
-
-                $scope.searchPatient = {
-
-                    FirstName: result.firstName,
-                    LastName: result.lastName,
-                    Age: parseInt(result.age),
-                    Gender: result.gender,
-                    History: result.medicalHistory
-                }
-            });
         });
-
     }]);
 
 

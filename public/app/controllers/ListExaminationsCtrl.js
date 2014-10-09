@@ -1,28 +1,26 @@
 'use strict';
 
-app.controller('ListExaminationsCtrl', ['$scope', '$location', 'examinationResource', 'notifier', 'identity',
-    function ListExaminationsCtrl($scope, $location, examinationResource, notifier, identity) {
-        if (identity.getCurrentUser() === undefined) {
+app.controller('ListExaminationsCtrl', ['$scope', '$location', '$resource', 'notifier', 'identity',
+    function ListExaminationsCtrl($scope, $location, $resource, notifier, identity) {
+        if (identity.currentUser === undefined) {
             notifier.error('Please login!');
             $location.path('/');
         }
 
-        ($scope.listExaminations = function() {
-            if (identity.getCurrentUser() === undefined) {
+        var Examinations = $resource('api/examinations/specialist/:id', {id:'@id'});
+        Examinations.query({id: identity.currentUser._id}, function(result) {
+            console.log(result);
+            $scope.examinations = result;
+        });
+
+        $scope.viewExamination = function(id) {
+            if (identity.currentUser === undefined) {
                 notifier.error('Please login!');
                 $location.path('/');
             } else {
-                examinationResource
-                    .getAllExaminations()
-                    .then(function (data) {
-                        $scope.examinations = data;
-                        $location.path('/');
-                    }, function (err) {
-                        notifier.error(err.message);
-                        $location.path('/');
-                    })
+                $location.path('/view-examination/' + id);
             }
-        })();
+        };
     }]);
 
 

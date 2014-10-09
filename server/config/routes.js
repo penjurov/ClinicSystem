@@ -38,6 +38,7 @@ module.exports = function (app) {
 
     //examination
     app.post('/api/examinations', controllers.examinations.create);
+    app.get('/api/examinations/specialist/:userId', controllers.examinations.getAllBySpecialistId);
     app.get('/api/examinations/:userId', controllers.examinations.getAllByUserId);
     app.get('/api/examination/:id', controllers.examinations.getById);
 

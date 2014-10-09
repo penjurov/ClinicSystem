@@ -59,13 +59,19 @@ module.exports = {
         });
     },
     getById: function(req, res) {
-        Examination.findOne({_id: req.params.id}).exec(function(err, result) {
-            if (err) {
-                return res.status(404).send('Examination could not be loaded: ' + err);
-            }
 
-            res.status(200).send(result);
-        })
+        Examination.findOne({_id: req.params.id})
+            .populate('Specialist', 'firstName lastName')
+            .populate('Patient', 'firstName lastName')
+            .populate('Medicine', 'name')
+            .populate('Procedure', 'name')
+            .exec(function(err, collection) {
+                if (err) {
+                    return res.status(404).send('Examination could not be loaded: ' + err);
+                }
+
+                res.status(200).send(collection);
+            })
     },
     getAllByUserId: function(req, res) {
         Examination.find({Patient: req.params.userId})
@@ -80,5 +86,19 @@ module.exports = {
 
             res.status(200).send(collection);
         })
+    },
+    getAllBySpecialistId: function(req, res) {
+        Examination.find({Specialist: req.params.userId})
+            .populate('Specialist', 'firstName lastName age gender medicalHistory')
+            .populate('Patient', 'firstName lastName age gender medicalHistory')
+            .populate('Medicine', 'name')
+            .populate('Procedure', 'name')
+            .exec(function(err, collection) {
+                if (err) {
+                    return res.status(404).send('Examination could not be loaded: ' + err);
+                }
+
+                res.status(200).send(collection);
+            })
     }
 };
