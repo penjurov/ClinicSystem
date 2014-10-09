@@ -34,10 +34,10 @@ MEAN health information software for small clinic. The system provides following
   
   Listing - 2 types :  
   
-    Patient's examinations - available only from logged patient, he can see only his examinations  
-      
-    Specialist's examinations - available only from logged specialist, he can see only his examinations  
-      
+  Patient's examinations - available only from logged patient, he can see only his examinations  
+  
+  Specialist's examinations - available only from logged specialist, he can see only his examinations  
+  
 
 ###Public part
   About - information about the clinic  
