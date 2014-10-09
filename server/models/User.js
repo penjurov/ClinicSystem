@@ -43,10 +43,28 @@ module.exports.seedInitialUsers = function() {
 
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'specialist', firstName: 'Ivan', lastName: 'Ivanov', salt: salt, hashPass: hashedPwd, role: 'specialist'});
+            User.create({username: 'iivanov', firstName: 'Ivan', lastName: 'Ivanov', specialty: 'Ophthalmology', uin: '1111111111', email: 'ivanivanov@hopeclinic.com', phone: '02/1111111', salt: salt, hashPass: hashedPwd, role: 'specialist'});
+
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'patient', firstName: 'Pesho', lastName: 'Peshov', salt: salt, hashPass: hashedPwd, role: 'patient'});
+            User.create({username: 'ggeorgiev', firstName: 'Georgi', lastName: 'Georgiev', specialty: 'Cardiology', uin: '2222222222', email: 'georgigeorgiev@hopeclinic.com', phone: '02/2222222', salt: salt, hashPass: hashedPwd, role: 'specialist'});
+
+            salt = encryption.generateSalt();
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+            User.create({username: 'mmartinov', firstName: 'Martin', lastName: 'Martinov', specialty: 'Endocrinology', uin: '3333333333', email: 'martinmartinov@hopeclinic.com', phone: '02/3333333', salt: salt, hashPass: hashedPwd, role: 'specialist'});
+
+            salt = encryption.generateSalt();
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+            User.create({username: 'PeshoPeshov', firstName: 'Pesho', lastName: 'Peshov', age: '31', gender: 'male', medicalHistory: 'Nothing special', patientNumber: '111111', salt: salt, hashPass: hashedPwd, role: 'patient'});
+
+            salt = encryption.generateSalt();
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+            User.create({username: 'GoshoGoshov', firstName: 'Gosho', lastName: 'Goshov', age: '26', gender: 'male', medicalHistory: 'Very ill', patientNumber: '222222', salt: salt, hashPass: hashedPwd, role: 'patient'});
+
+            salt = encryption.generateSalt();
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+            User.create({username: 'PenkaPenkova', firstName: 'Penka', lastName: 'Penkova', age: '19', gender: 'female', medicalHistory: 'Oh my god', patientNumber: '333333', salt: salt, hashPass: hashedPwd, role: 'patient'});
+
             console.log("Starting users created");
         }
     });

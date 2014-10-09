@@ -25,21 +25,5 @@ var examinationSchema = new Schema({
 var Examination = mongoose.model('Examination', examinationSchema);
 
 module.exports = {
-    Examination: Examination,
-    seedInitialExaminations: function(){
-        Examination.find({}).exec(function(err, result){
-            if(err){
-                return console.log(err);
-            }
-
-            if(result.length === 0){
-                Examination.create({
-                    Information: 'Has fever',
-                    Result: 'Patient is sick'
-                });
-
-                console.log('Seed examination added');
-            }
-        });
-    }
+    Examination: Examination
 };
