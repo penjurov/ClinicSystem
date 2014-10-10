@@ -15,12 +15,16 @@ app.controller('ProfileCtrl', function ProfileCtrl($scope, $route, $location, no
         };
 
         $scope.update = function(user) {
-            auth.update(user).then(function() {
-                $scope.firstName = user.firstName;
-                $scope.lastName = user.lastName;
-                notifier.success('Update successful!');
-                $location.path('/');
-            });
+            if(user.password == user.confirmPassword) {
+                auth.update(user).then(function() {
+                    $scope.firstName = user.firstName;
+                    $scope.lastName = user.lastName;
+                    notifier.success('Update successful!');
+                    $location.path('/');
+                });
+            } else {
+                notifier.error("Passwords don't match");
+            }
         };
 
         $scope.close = function(user) {

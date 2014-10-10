@@ -10,22 +10,28 @@ module.exports = {
         } else {
             newUserData.role = "patient";
         }
+        if(newUserData.password !== newUserData.confirmPassword) {
+            return res.status(400).send("Passwords don't match!");
+        } else {
+            newUserData.username = req.body.username.toLowerCase();
+            newUserData.salt = encryption.generateSalt();
+            newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+            User.create(newUserData, function (err, user) {
+                if (err) {
+                    return res.status(404).send('Failed to register new user: ' + err);
+                }
 
-        newUserData.username = req.body.username.toLowerCase();
-        newUserData.salt = encryption.generateSalt();
-        newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
-        User.create(newUserData, function(err, user) {
-            if (err) {
-                return res.status(404).send('Failed to register new user: ' + err);
-            }
-
-            res.status(201).send('Created successful');
-        });
+                res.status(201).send('Created successful');
+            });
+        }
     },
     updateUser: function(req, res, next) {
         if (req.user._id == req.body._id || req.user.role == 'specialist') {
             var updatedUserData = req.body;
             if (updatedUserData.password && updatedUserData.password.length > 0) {
+                if(updatedUserData.password !== updatedUserData.confirmPassword) {
+                    return res.status(400).send("Passwords don't match!");
+                }
                 updatedUserData.salt = encryption.generateSalt();
                 updatedUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
             }
