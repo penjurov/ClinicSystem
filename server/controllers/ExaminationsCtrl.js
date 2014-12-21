@@ -1,14 +1,17 @@
-var User = require('mongoose').model('User');
-var Procedure = require('mongoose').model('Procedure');
-var Medicine = require('mongoose').model('Medicine');
-var Examination = require('mongoose').model('Examination');
+var User = require('mongoose').model('User'),
+    Procedure = require('mongoose').model('Procedure'),
+    Medicine = require('mongoose').model('Medicine'),
+    Examination = require('mongoose').model('Examination');
 
 module.exports = {
-    create: function(req, res, next) {
+    create: function create(req, res, next) {
+        'use strict';
+
         var specialist,
             patient,
             medicine,
-            procedure;
+            procedure,
+            newExaminationData;
 
         User.find({_id: req.body.specialistId}).exec(function (err, result) {
             if (err) {
@@ -16,7 +19,9 @@ module.exports = {
             }
             specialist = result[0];
 
-            User.find({_id: req.body.patientId}).exec(function (err, result) {
+            User.find({
+                _id: req.body.patientId
+            }).exec(function (err, result) {
                 if (err) {
                     return res.status(404).send('Cannot find the patient: ' + err);
                 }
@@ -28,15 +33,15 @@ module.exports = {
                     }
                     procedure = result[0];
 
-                    Medicine.find({_id: req.body.Medicine}).exec(function (err, result) {
+                    Medicine.find({
+                        _id: req.body.Medicine
+                    }).exec(function (err, result) {
                         if (err) {
                             return res.status(404).send('Cannot find the medicine: ' + err);
                         }
                         medicine = result[0];
 
-
-
-                        var newExaminationData = {
+                        newExaminationData = {
                             Patient : patient,
                             Specialist: specialist,
                             Medicine: medicine,
@@ -58,47 +63,58 @@ module.exports = {
             });
         });
     },
-    getById: function(req, res) {
+    getById: function getById(req, res) {
+        'use strict';
 
-        Examination.findOne({_id: req.params.id})
-            .populate('Specialist', 'firstName lastName')
-            .populate('Patient', 'firstName lastName age gender medicalHistory')
-            .populate('Medicine', 'name')
-            .populate('Procedure', 'name')
-            .exec(function(err, collection) {
-                if (err) {
-                    return res.status(404).send('Examination could not be loaded: ' + err);
-                }
-
-                res.status(200).send(collection);
-            })
-    },
-    getAllByUserId: function(req, res) {
-        Examination.find({Patient: req.params.userId})
-            .populate('Specialist', 'firstName lastName')
-            .populate('Patient', 'firstName lastName age gender medicalHistory')
-            .populate('Medicine', 'name')
-            .populate('Procedure', 'name')
-            .exec(function(err, collection) {
+        Examination.findOne({
+            _id: req.params.id
+        })
+        .populate('Specialist', 'firstName lastName')
+        .populate('Patient', 'firstName lastName age gender medicalHistory')
+        .populate('Medicine', 'name')
+        .populate('Procedure', 'name')
+        .exec(function(err, collection) {
             if (err) {
                 return res.status(404).send('Examination could not be loaded: ' + err);
             }
 
             res.status(200).send(collection);
-        })
+        });
     },
-    getAllBySpecialistId: function(req, res) {
-        Examination.find({Specialist: req.params.userId})
-            .populate('Specialist', 'firstName lastName')
-            .populate('Patient', 'firstName lastName age gender medicalHistory')
-            .populate('Medicine', 'name')
-            .populate('Procedure', 'name')
-            .exec(function(err, collection) {
-                if (err) {
-                    return res.status(404).send('Examination could not be loaded: ' + err);
-                }
+    getAllByUserId: function getAllByUserId(req, res) {
+        'use strict';
 
-                res.status(200).send(collection);
-            })
+        Examination.find({
+            Patient: req.params.userId
+        })
+        .populate('Specialist', 'firstName lastName')
+        .populate('Patient', 'firstName lastName age gender medicalHistory')
+        .populate('Medicine', 'name')
+        .populate('Procedure', 'name')
+        .exec(function(err, collection) {
+            if (err) {
+                return res.status(404).send('Examination could not be loaded: ' + err);
+            }
+
+            res.status(200).send(collection);
+        });
+    },
+    getAllBySpecialistId: function getAllBySpecialistId(req, res) {
+        'use strict';
+        
+        Examination.find({
+            Specialist: req.params.userId
+        })
+        .populate('Specialist', 'firstName lastName')
+        .populate('Patient', 'firstName lastName age gender medicalHistory')
+        .populate('Medicine', 'name')
+        .populate('Procedure', 'name')
+        .exec(function(err, collection) {
+            if (err) {
+                return res.status(404).send('Examination could not be loaded: ' + err);
+            }
+
+            res.status(200).send(collection);
+        });
     }
 };

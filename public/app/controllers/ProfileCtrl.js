@@ -1,6 +1,7 @@
-'use strict';
-
-app.controller('ProfileCtrl', function ProfileCtrl($scope, $route, $location, notifier, identity, auth) {
+app.controller('ProfileCtrl',
+    function ProfileCtrl($scope, $route, $location, notifier, identity, auth) {
+        'use strict';
+        
         $scope.user = {
             firstName: identity.currentUser.firstName,
             lastName: identity.currentUser.lastName,
@@ -8,7 +9,7 @@ app.controller('ProfileCtrl', function ProfileCtrl($scope, $route, $location, no
             uin: identity.currentUser.uin,
             email: identity.currentUser.email,
             phone: identity.currentUser.phone,
-            age: parseInt(identity.currentUser.age),
+            age: parseInt(identity.currentUser.age, 10),
             gender: identity.currentUser.gender,
             medicalHistory: identity.currentUser.medicalHistory,
             patientNumber: identity.currentUser.patientNumber
@@ -40,7 +41,7 @@ app.controller('ProfileCtrl', function ProfileCtrl($scope, $route, $location, no
                     $route.reload();
                 }, function (err) {
                     notifier.error(err.message);
-                })
+                });
             }, function (err) {
                 notifier.error(err.message);
             });

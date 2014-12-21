@@ -1,16 +1,18 @@
 app.factory('examinationResource', ['$resource', function ($resource) {
-    var examinationApi = '/api/examinations/:userId';
-    var examinationResource = $resource( examinationApi, null, {
-        update: {method: 'PUT', isArray: false},
-        post: {method: 'POST', isArray: false },
-        getByUserId: {method:'GET', params:{userId: '@userId'}, isArray:true}
-    });
+    'use strict';
+    
+    var examinationApi = '/api/examinations/:userId',
+        examinationResource = $resource( examinationApi, null, {
+            update: {method: 'PUT', isArray: false},
+            post: {method: 'POST', isArray: false },
+            getByUserId: {method:'GET', params:{userId: '@userId'}, isArray:true}
+        });
 
     return {
-        add: function (examination) {
+        add: function add(examination) {
             return examinationResource.post(examination);
         },
-        getAllByUserId: function(userId){
+        getAllByUserId: function getAllByUserId(userId){
             return examinationResource.getByUserId({userId: userId});
         }
     };

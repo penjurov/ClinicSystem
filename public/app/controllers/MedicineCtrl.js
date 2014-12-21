@@ -1,7 +1,6 @@
-'use strict';
-
 app.controller('MedicineCtrl', ['$scope', '$location', 'notifier', 'identity', 'auth', 'medicineResource',
     function ($scope, $location, notifier, identity, auth, medicineResource) {
+        'use strict';
 
         medicineResource.get().$promise.then(function (data) {
             $scope.medicines=data;

@@ -1,25 +1,35 @@
 var mongoose = require('mongoose'),
-    encryption = require('../utilities/encryption');
-
-var userSchema = mongoose.Schema({
-    username: { type: String, require: '{PATH} is required', unique: true },
-    firstName: { type: String, require: '{PATH} is required' },
-    lastName: { type: String, require: '{PATH} is required' },
-    specialty: String,
-    uin: String,
-    email: String,
-    phone: String,
-    age: String,
-    gender: String,
-    medicalHistory: String,
-    patientNumber: String,
-    salt: String,
-    hashPass: String,
-    role: String
-});
+    encryption = require('../utilities/encryption'),
+    userSchema = mongoose.Schema({
+        username: {
+            type: String,
+            require: '{PATH} is required',
+            unique: true
+        },
+        firstName: {
+            type: String,
+            require: '{PATH} is required'
+        },
+        lastName: {
+            type: String,
+            require: '{PATH} is required'
+        },
+        specialty: String,
+        uin: String,
+        email: String,
+        phone: String,
+        age: String,
+        gender: String,
+        medicalHistory: String,
+        patientNumber: String,
+        salt: String,
+        hashPass: String,
+        role: String
+    }),
+    User = mongoose.model('User', userSchema);
 
 userSchema.method({
-    authenticate: function(password) {
+    authenticate: function authenticate(password) {
         if (encryption.generateHashedPassword(this.salt, password) === this.hashPass) {
             return true;
         } else {
@@ -28,9 +38,7 @@ userSchema.method({
     }
 });
 
-var User = mongoose.model('User', userSchema);
-
-module.exports.seedInitialUsers = function() {
+module.exports.seedInitialUsers = function seedInitialUsers() {
     User.find({}).exec(function(err, collection) {
         if (err) {
             console.log('Cannot find users: ' + err);

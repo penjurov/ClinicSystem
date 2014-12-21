@@ -1,4 +1,6 @@
 app.factory('UsersResource', function($resource) {
+	'use strict';
+	
     var UsersResource = $resource('/api/users/:id', {_id:'@id'},{
         update: {method: 'PUT', isArray: false },
         delete: {method: 'DELETE', isArray: false }

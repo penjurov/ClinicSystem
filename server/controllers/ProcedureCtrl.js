@@ -2,6 +2,7 @@ var procedure = require('mongoose').model('Procedure');
 
 module.exports.createProcedure = function (req, res, next) {
     'use strict';
+
     var newProcedure = req.body;
     procedure.create(newProcedure, function (err, result) {
         if (err) {
@@ -14,6 +15,7 @@ module.exports.createProcedure = function (req, res, next) {
 
 module.exports.getAll = function (req, res, next) {
     'use strict';
+    
     console.log('here');
     procedure.find({}).exec(function (err, result) {
         res.json(result);

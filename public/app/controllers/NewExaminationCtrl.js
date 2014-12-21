@@ -1,7 +1,7 @@
-'use strict'
-
 app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notifier', 'identity', 'examinationResource', 'medicineResource', 'procedureResource',
     function ($scope, $location, $resource, notifier, identity, examinationResource, medicineResource, procedureResource) {
+        'use strict';
+
         if (identity.currentUser === undefined) {
             notifier.error('Please login!');
             $location.path('/');
@@ -11,20 +11,19 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notif
         $scope.procedures = procedureResource.get();
 
         $scope.findPatient = function (patient) {
-            var User = $resource('api/users/:username', {username:'@username'});
-            var user = User.get({username:patient.toLowerCase()}, function(result) {
-                $scope.examination.patientId = result._id;
+            var User = $resource('api/users/:username', {username:'@username'}),
+                user = User.get({username:patient.toLowerCase()}, function(result) {
+                    $scope.examination.patientId = result._id;
 
-                $scope.searchPatient = {
-
-                    FirstName: result.firstName,
-                    LastName: result.lastName,
-                    Age: parseInt(result.age),
-                    Gender: result.gender,
-                    History: result.medicalHistory
-                }
-            });
-        }
+                    $scope.searchPatient = {
+                        FirstName: result.firstName,
+                        LastName: result.lastName,
+                        Age: parseInt(result.age, 10),
+                        Gender: result.gender,
+                        History: result.medicalHistory
+                    };
+                });
+        };
 
         $scope.newExamination = function (examination) {
             if (!identity.isAuthorizedForRole('specialist')) {
@@ -42,7 +41,7 @@ app.controller('NewExaminationCtrl', ['$scope', '$location', '$resource', 'notif
                     }, function (err) {
                         notifier.error(err.message);
                         $location.path('/');
-                    })
+                    });
             }
-        }
+        };
     }]);

@@ -3,7 +3,7 @@ var auth = require('./auth'),
     mongoose = require('mongoose'),
     User = mongoose.model('User');
 
-module.exports = function (app) {
+module.exports = function exports(app) {
     'use strict';
 
     // account

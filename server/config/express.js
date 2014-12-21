@@ -6,7 +6,9 @@ var express = require('express'),
     passport = require('passport'),
     errorHandler = require('errorhandler');
 
-module.exports = function (app, config) {
+module.exports = function exports(app, config) {
+    'use strict';
+
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
 
@@ -19,7 +21,7 @@ module.exports = function (app, config) {
     app.use(session({secret: '<mysecret>', saveUninitialized: true, resave: true}));
     app.use(stylus.middleware({
         src: config.rootPath + '/public',
-        compile: function (str, path) {
+        compile: function compile(str, path) {
             return stylus(str).set('filename', path);
         }}));
     app.use(passport.initialize());

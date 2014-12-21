@@ -13,7 +13,7 @@ app.controller('ProcedureCtrl', ['$scope', '$location', 'notifier', 'identity', 
                 notifier.success(data.name + ' procedure is successfully added!');
                 $location.path('/');
             }, function () {
-                notifier.error('Duplicated name!')
+                notifier.error('Duplicated name!');
             });
         };
 
@@ -26,6 +26,5 @@ app.controller('ProcedureCtrl', ['$scope', '$location', 'notifier', 'identity', 
                     notifier.error("Can not update procedure with invalid data");
                 });
             }
-        }
+        };
     }]);
-

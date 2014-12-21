@@ -4,10 +4,13 @@ var mongoose = require('mongoose'),
     procedure = require('../models/Procedure'),
     examination = require('../models/Examination');
 
-module.exports = function(config) {
+module.exports = function exports(config) {
     'use strict';
+    
+    var db;
+
     mongoose.connect(config.db);
-    var db = mongoose.connection;
+    db = mongoose.connection;
 
     db.once('open', function(err) {
         if(err) {

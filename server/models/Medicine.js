@@ -1,8 +1,15 @@
 var mongoose = require('mongoose');
 
 var medicineSchema = mongoose.Schema({
-    name: { type: String, require: '{PATH} is required', unique: true },
-    desc: { type: String, require: '{PATH} is required' },
+    name: {
+        type: String,
+        require: '{PATH} is required',
+        unique: true
+    },
+    desc: {
+        type: String,
+        require: '{PATH} is required'
+    },
     sideEffects: String,
     minAge: Number
 });
@@ -17,7 +24,6 @@ module.exports.seedInitialMedicines = function () {
         }
 
         if (collection.length === 0) {
-
             Medicine.create({
                 name: 'Viagra',
                 desc: 'Be a man, again!',

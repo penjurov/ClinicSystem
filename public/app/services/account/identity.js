@@ -1,17 +1,20 @@
 app.factory('identity', function($window, UsersResource) {
-    var user;
-    var logged = localStorage.getItem('bootstrappedUserObject');
+    'use strict';
+    
+    var user,
+        logged = localStorage.getItem('bootstrappedUserObject');
+
     if (logged) {
         user = new UsersResource();
         angular.extend(user, JSON.parse(logged));
     }
     return {
         currentUser: user,
-        isAuthenticated: function() {
+        isAuthenticated: function isAuthenticated() {
             return !!this.currentUser;
         },
-        isAuthorizedForRole: function(role) {
+        isAuthorizedForRole: function isAuthorizedForRole(role) {
             return (!!this.currentUser && this.currentUser.role === role);
         }
-    }
+    };
 });

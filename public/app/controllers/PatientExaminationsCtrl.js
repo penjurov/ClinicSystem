@@ -1,7 +1,7 @@
-'use strict';
-
 app.controller('PatientExaminationsCtrl', ['$scope', '$location', 'examinationResource', 'notifier', 'identity',
     function ($scope, $location, examinationResource, notifier, identity) {
+        'use strict';
+
         if (identity.currentUser === undefined) {
             notifier.error('Please login!');
             $location.path('/');
@@ -19,5 +19,3 @@ app.controller('PatientExaminationsCtrl', ['$scope', '$location', 'examinationRe
             }
         };
     }]);
-
-

@@ -6,12 +6,13 @@ module.exports = {
         var newUserData = req.body;
 
         if (newUserData.uin) {
-            newUserData.role = "specialist";
+            newUserData.role = 'specialist';
         } else {
-            newUserData.role = "patient";
+            newUserData.role = 'patient';
         }
+
         if(newUserData.password !== newUserData.confirmPassword) {
-            return res.status(400).send("Passwords don't match!");
+            return res.status(400).send('Passwords don\'t match!');
         } else {
             newUserData.username = req.body.username.toLowerCase();
             newUserData.salt = encryption.generateSalt();
@@ -30,7 +31,7 @@ module.exports = {
             var updatedUserData = req.body;
             if (updatedUserData.password && updatedUserData.password.length > 0) {
                 if(updatedUserData.password !== updatedUserData.confirmPassword) {
-                    return res.status(400).send("Passwords don't match!");
+                    return res.status(400).send('Passwords don\'t match!');
                 }
                 updatedUserData.salt = encryption.generateSalt();
                 updatedUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
@@ -41,7 +42,7 @@ module.exports = {
             });
         }
         else {
-            res.send({reason: 'You do not have permissions!'})
+            res.send({reason: 'You do not have permissions!'});
         }
     },
     deleteUser: function(req, res, next) {
